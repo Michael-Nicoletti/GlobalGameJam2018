@@ -5262,7 +5262,7 @@ MonoBehaviour:
     foliagePrefabs: []
   impassiblePrefab: {fileID: 1366145186483182, guid: e555c0d6ca1a77b48a8728a55aeaebd5,
     type: 2}
-  minMaxImpassableTiles: {x: 15, y: 20}
+  minMaxImpassableTiles: {x: 35, y: 40}
 --- !u!4 &802862865
 Transform:
   m_ObjectHideFlags: 0

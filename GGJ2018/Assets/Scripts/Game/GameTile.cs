@@ -61,8 +61,17 @@ public class GameTile : MonoBehaviour {
 	public bool CheckSides() {
 		if (left == null || right == null || up == null || down == null) {
 			return false;
-		} else {
+		} else if (left.type == TileType.Impassible || right.type == TileType.Impassible || up.type == TileType.Impassible || down.type == TileType.Impassible) {
+			return false;
+		}else {
 			return true;
 		}
+	}
+
+	public void SetImpassible() {
+		type = TileType.Impassible;
+		GameObject tempGo = Instantiate(GameTileManager.instance.impassiblePrefab, transform);
+		tempGo.transform.position += Vector3.up;
+		//Spawn on a rock or something
 	}
 }

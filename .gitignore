@@ -3,6 +3,7 @@ Temp/
 Library/
 obj/
 *.svd
+*.csproj
 
 !Library/*.asset
 !Library/AssetImportState

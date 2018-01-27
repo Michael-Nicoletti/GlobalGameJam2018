@@ -12,7 +12,6 @@ public class GameTile : MonoBehaviour {
 	public GameTile right;
 	public GameTile up;
 	public GameTile down;
-	public int moveCost = 1;
 
 	public void Initialize() {
 		RaycastHit outHit = new RaycastHit ();

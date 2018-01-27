@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class CameraMan : MonoBehaviour {
 
+	public static CameraMan instance;
 	[SerializeField] private Vector3 cameraOffset = new Vector3 (-4, 10, -7);
 	[SerializeField] private float CameraSpeed = 1;
 	private Transform target;
+
+	void Awake () {
+		instance = this;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -35,5 +40,9 @@ public class CameraMan : MonoBehaviour {
 	{
 		target = newTar;
 		return;
+	}
+
+	public Vector3 GetCameraOffset(){
+		return cameraOffset;
 	}
 }

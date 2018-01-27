@@ -51,10 +51,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BoardUnits\Player.cs" />
      <Compile Include="Assets\Scripts\Game\CameraMan.cs" />
      <Compile Include="Assets\Scripts\Game\GameManager.cs" />
      <Compile Include="Assets\Scripts\Game\GameTile.cs" />
      <Compile Include="Assets\Scripts\Game\GameTileManager.cs" />
+     <Compile Include="Assets\Scripts\Game\MouseHandler.cs" />
  <Reference Include="Facebook.Unity.Settings">
  <HintPath>C:/Users/graphic/Documents/GitHub/GGJ2018/Library/FacebookSDK/Facebook.Unity.Settings.dll</HintPath>
  </Reference>

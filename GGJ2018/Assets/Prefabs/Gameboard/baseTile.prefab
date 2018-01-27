@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114623658304675988}
   m_Layer: 0
   m_Name: baseTile
-  m_TagString: Untagged
+  m_TagString: GameTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 402cfb0d69654cd45af2251aef785852, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc71aac47981394a8af94162c895d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 3
   left: {fileID: 0}
   right: {fileID: 0}
   up: {fileID: 0}

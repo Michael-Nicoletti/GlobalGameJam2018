@@ -93,7 +93,7 @@ public class GameTile : MonoBehaviour {
 	public bool CheckSides() {
 		for (int i = 0; i < tiles.Length; i++) {
 			if (i % 2 == 0) {
-				if (tiles [i].type == TileType.Impassible || tiles [i].type == null) {
+				if (tiles [i].type == TileType.Impassible || tiles [i] == null) {
 					return false;
 				}
 			}

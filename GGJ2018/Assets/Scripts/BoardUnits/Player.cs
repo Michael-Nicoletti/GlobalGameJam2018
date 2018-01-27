@@ -8,8 +8,7 @@ public class Player : GameUnit {
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine(LateStart(0.1f));
-
+		pathfindFromTo (transform.position, new Vector3 (0, 0, 25));
 	}
 	
 	// Update is called once per frame
@@ -17,13 +16,6 @@ public class Player : GameUnit {
 	}
 
 	void FixedUpdate(){
-
-	}
-
-	IEnumerator LateStart(float waitTime)
-	{
-		yield return new WaitForSeconds(waitTime);
-
-		pathfindFromTo (transform.position, new Vector3 (0, 0, 15));
+		base.FixedUpdate ();
 	}
 }

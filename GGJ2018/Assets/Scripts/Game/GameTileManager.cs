@@ -5,19 +5,26 @@ using UnityEngine;
 public class GameTileManager : MonoBehaviour {
 
 	public static GameTileManager instance;
-
-	public GameTile startingTilePrefab;
-	public int boardSize = 10;
 	public List<GameTile> gameTiles = new List<GameTile>();
 
 	void Awake() {
 		instance = this;
 	}
 
-	public void Initialize() { 
-		GameTile startingTile = Instantiate (startingTilePrefab.gameObject, Vector3.zero, Quaternion.identity).GetComponent<GameTile>();
+	void Start() {
+		GameTile[] gameTileHolder = GetComponentsInChildren<GameTile> ();
+		for (int i = 0; i < gameTileHolder.Length; i++) {
+			gameTiles.Add (gameTileHolder [i]);
+			gameTileHolder [i].Initialize ();
+		}
+	}
 
-		startingTile.Initialize ();
-
+	public GameTile GetTileFromPos(Vector3 pos) {
+		for (int i = 0; i < gameTiles.Count; i++) {
+			if (gameTiles [i].transform.position == pos) {
+				return gameTiles [i];
+			}
+		}
+		return null;
 	}
 }

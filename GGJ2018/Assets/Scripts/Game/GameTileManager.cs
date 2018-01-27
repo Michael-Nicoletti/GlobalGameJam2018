@@ -18,6 +18,7 @@ public class GameTileManager : MonoBehaviour {
 	public GameObject impassiblePrefab;
 	public Vector2 minMaxImpassableTiles;
 
+	private int[] rotations = new int[] { 0, 90, 180, 270 };
 
 	void Awake() {
 		instance = this;
@@ -34,7 +35,7 @@ public class GameTileManager : MonoBehaviour {
 		int numImpassableTiles = Mathf.RoundToInt(Random.Range(minMaxImpassableTiles.x, minMaxImpassableTiles.y));
 		Vector3 checkCoordinates = Vector3.zero;
 		for (int i = 0; i <= numImpassableTiles; i++) {
-			checkCoordinates = new Vector3 (Random.Range (-25, 25), 0, Random.Range (-25, 25));
+			checkCoordinates = new Vector3 (Random.Range (-36, 36), 0, Random.Range (-36, 36));
 			if (checkCoordinates.x % 5 != 0) {
 				checkCoordinates.x = RoundToNearestFive (Mathf.RoundToInt(checkCoordinates.x));
 			} if (checkCoordinates.z % 5 != 0) {
@@ -68,7 +69,7 @@ public class GameTileManager : MonoBehaviour {
 		GameObject returnObject = null;
 		for (int i = 0; i < baseTilePrefabs.Count; i++) {
 			if (baseTilePrefabs [i].type == inType) {
-				returnObject = baseTilePrefabs [i].basePrefabs [Random.Range (0, baseTilePrefabs [i].basePrefabs.Count - 1)];
+				returnObject = baseTilePrefabs [i].basePrefabs [Random.Range (0, baseTilePrefabs [i].basePrefabs.Count)];
 			}
 		}
 		return returnObject;
@@ -76,5 +77,8 @@ public class GameTileManager : MonoBehaviour {
 
 	public int RoundToNearestFive(int preNum){
 		return preNum += (5 - Mathf.RoundToInt (preNum % 5));
+	}
+	public int RandomRotationAngle() {
+		return rotations [Random.Range (0, rotations.Length)];
 	}
 }

@@ -58,18 +58,18 @@ public class GameUnit : MonoBehaviour {
 		//Check all tiles that are neighbouring the one the player is currently on. 
 		//Add them to the list of nodes to scan. (The start node is included by default).
 		while (keepSearching && pathExists) {
-			if (currentNode.me.up != null && !closedNodes.Contains(new Node(currentNode.me.up, currentNode)) && currentNode.me.up.type != GameTile.TileType.Impassible) {
-				Debug.Log (currentNode.me.up.type);
-				foundNodes.Add (new Node(currentNode.me.up, currentNode));
+			if (currentNode.me.tiles[(int)GameTile.Direction.Up] != null && !closedNodes.Contains(new Node(currentNode.me.tiles[(int)GameTile.Direction.Up], currentNode)) && currentNode.me.tiles[(int)GameTile.Direction.Up].type != GameTile.TileType.Impassible) {
+				Debug.Log (currentNode.me.tiles[(int)GameTile.Direction.Up].type);
+				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Up], currentNode));
 			}
-			if (currentNode.me.right != null && !closedNodes.Contains(new Node(currentNode.me.right, currentNode)) && currentNode.me.right.type != GameTile.TileType.Impassible) {
-				foundNodes.Add (new Node(currentNode.me.right, currentNode));
+			if (currentNode.me.tiles[(int)GameTile.Direction.Right] != null && !closedNodes.Contains(new Node(currentNode.me.tiles[(int)GameTile.Direction.Right], currentNode)) && currentNode.me.tiles[(int)GameTile.Direction.Right].type != GameTile.TileType.Impassible) {
+				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Right], currentNode));
 			}
-			if (currentNode.me.down != null && !closedNodes.Contains(new Node(currentNode.me.down, currentNode)) && currentNode.me.down.type != GameTile.TileType.Impassible) {
-				foundNodes.Add (new Node(currentNode.me.down, currentNode));
+			if (currentNode.me.tiles[(int)GameTile.Direction.Down] != null && !closedNodes.Contains(new Node(currentNode.me.tiles[(int)GameTile.Direction.Down], currentNode)) && currentNode.me.tiles[(int)GameTile.Direction.Down].type != GameTile.TileType.Impassible) {
+				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Down], currentNode));
 			}
-			if (currentNode.me.left != null && !closedNodes.Contains(new Node(currentNode.me.left, currentNode)) && currentNode.me.left.type != GameTile.TileType.Impassible) {
-				foundNodes.Add (new Node(currentNode.me.left, currentNode));
+			if (currentNode.me.tiles[(int)GameTile.Direction.Left] != null && !closedNodes.Contains(new Node(currentNode.me.tiles[(int)GameTile.Direction.Left], currentNode)) && currentNode.me.tiles[(int)GameTile.Direction.Left].type != GameTile.TileType.Impassible) {
+				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Left], currentNode));
 			}
 
 			//Scan all found nodes for fitness.

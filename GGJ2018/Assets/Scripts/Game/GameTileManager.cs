@@ -15,6 +15,8 @@ public class GameTileManager : MonoBehaviour {
 	public GameObject[] tileModelPrefabs = new GameObject[2];
 	public List<GameTile> gameTiles = new List<GameTile>();
 	public List<BaseTiles> baseTilePrefabs = new List<BaseTiles>();
+	public Vector2 minMaxImpassableTiles;
+
 
 	void Awake() {
 		instance = this;
@@ -25,6 +27,29 @@ public class GameTileManager : MonoBehaviour {
 		for (int i = 0; i < gameTileHolder.Length; i++) {
 			gameTiles.Add (gameTileHolder [i]);
 			gameTileHolder [i].Initialize ();
+		}
+
+		//Time to randomize and make some impassable tiles
+		int numImpassableTiles = Mathf.RoundToInt(Random.Range(minMaxImpassableTiles.x, minMaxImpassableTiles.y));
+		Vector3 checkCoordinates = Vector3.zero;
+		for (int i = 0; i <= numImpassableTiles; i++) {
+			checkCoordinates = new Vector3 (Random.Range (-25, 25), 0, Random.Range (-25, 25));
+			if (checkCoordinates.x % 3 != 0) {
+				checkCoordinates.x = RoundToNearestThree (Mathf.RoundToInt(checkCoordinates.x));
+			} if (checkCoordinates.z % 3 != 0) {
+				checkCoordinates.z = RoundToNearestThree (Mathf.RoundToInt(checkCoordinates.z));
+			}
+
+			Debug.Log (checkCoordinates);
+			GameTile foundTile = GetTileFromPos (checkCoordinates);
+			if (foundTile != null) {
+				if (!foundTile.CheckSides ()) {
+					i -= 1;
+					continue;
+				} else {
+					
+				}
+			}
 		}
 	}
 
@@ -45,5 +70,9 @@ public class GameTileManager : MonoBehaviour {
 			}
 		}
 		return returnObject;
+	}
+
+	public int RoundToNearestThree(int preNum){
+		return preNum += (3 - Mathf.RoundToInt (preNum % 3));
 	}
 }

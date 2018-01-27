@@ -58,4 +58,12 @@ public class GameTile : MonoBehaviour {
 
 		Instantiate (spawnTile, transform);
 	}
+
+	public bool CheckSides() {
+		if (left == null || right == null || up == null || down == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

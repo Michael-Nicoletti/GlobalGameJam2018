@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxMoves: 2
   tileTransitionSpeed: 2
+  wispPrefab: {fileID: 1379558789047046, guid: 89bf6fa7fc6912a49bfd5c6772a62e9a, type: 2}
   arrowPrefab: {fileID: 1017756299125174, guid: cbc13e2b60a7dd249bd430d83b512c30,
     type: 2}
   maxArrows: 1

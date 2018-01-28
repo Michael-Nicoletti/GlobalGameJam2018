@@ -6,14 +6,16 @@ using UnityEngine;
 
 public class Player : GameUnit {
 
+	[SerializeField]GameObject wispPrefab;
 	[SerializeField]GameObject arrowPrefab;
 	[SerializeField]int maxArrows = 1;
 	[SerializeField]int arrowSpeed = 10;
 	int arrowSupply;
+	bool haveWisp = true;
 
 	protected override void Start () {
 		base.Start ();
-		refreshArrows ();
+		RefreshArrows ();
 	}
 
 	protected override void FixedUpdate(){
@@ -173,7 +175,16 @@ public class Player : GameUnit {
 		}
 	}
 
-	public void refreshArrows(){
+	public void RefreshArrows(){
 		arrowSupply = maxArrows;
+	}
+
+	public void SpawnWisp (GameObject gt){
+		if (haveWisp) {
+			GameObject wispy = Instantiate (wispPrefab, transform.position, Quaternion.identity);
+			wispy.GetComponent<Wisp> ().Prime (this.gameObject, gt);
+		}
+
+		return;
 	}
 }

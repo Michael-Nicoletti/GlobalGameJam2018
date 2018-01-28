@@ -52,7 +52,7 @@ public class GameUnit : MonoBehaviour {
 	//Run "pathfindFromTo," and feed in the start and target tiles by their vector.
 	//The unit will automatically attempt to travel along those tiles.
 	//Modify units snapping to tiles via "tileSnapDistance
-	protected void pathfindFromTo(Vector3 start, Vector3 target)
+	protected virtual void pathfindFromTo(Vector3 start, Vector3 target)
 	{
 		if (!asleep && !travelling) {//GAME UNITS WILL NOT PATHFIND WHILE ASLEEP
 			if (start == target || GameTileManager.instance.GetTileFromPos (RoundVectorToFives (target)).type == GameTile.TileType.Impassible

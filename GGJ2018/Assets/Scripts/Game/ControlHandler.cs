@@ -22,7 +22,9 @@ public class ControlHandler : MonoBehaviour {
 			MouseDetection ();	
 			if (Input.GetMouseButtonDown (0) && highlightedElement != null) {
 				if (highlightedElement.GetComponent<GameTile> () != null) {
-					if (highlightedElement.GetComponent<GameTile> ().type == GameTile.TileType.Transmitter) {
+					if (Input.GetKey (KeyCode.E)){
+						GameManager.instance.WhoseTurnIsIt ().SendMessage ("SpawnWisp", highlightedElement);
+					} else if (highlightedElement.GetComponent<GameTile> ().type == GameTile.TileType.Transmitter) {
 						GameManager.instance.WhoseTurnIsIt ().SendMessage ("TryActivateTransmitter", highlightedElement.transform.position, SendMessageOptions.DontRequireReceiver);
 					} else if (GameManager.instance.WhoseTurnIsIt ().GetComponent (typeof(Player)) != null) {
 						GameManager.instance.WhoseTurnIsIt ().SendMessage ("TryMovement", highlightedElement, SendMessageOptions.DontRequireReceiver);
@@ -35,7 +37,6 @@ public class ControlHandler : MonoBehaviour {
 			}
 
 			if (Input.GetKeyDown (KeyCode.W)) {
-				Debug.Log (GameManager.instance.WhoseTurnIsIt ().name);
 				GameManager.instance.WhoseTurnIsIt ().SendMessage ("TryAttackMove", Vector3.forward, SendMessageOptions.DontRequireReceiver);
 			} else if (Input.GetKeyDown (KeyCode.A)) {
 				GameManager.instance.WhoseTurnIsIt ().SendMessage ("TryAttackMove", Vector3.left, SendMessageOptions.DontRequireReceiver);
@@ -45,6 +46,15 @@ public class ControlHandler : MonoBehaviour {
 				GameManager.instance.WhoseTurnIsIt ().SendMessage ("TryAttackMove", Vector3.right, SendMessageOptions.DontRequireReceiver);
 			} else if (Input.GetKeyDown (KeyCode.E)) {
 				GameManager.instance.WhoseTurnIsIt ().SendMessage ("SpawnMinion", SendMessageOptions.DontRequireReceiver);
+			}
+
+			if (GameManager.instance.WhoseTurnIsIt ().GetComponent<Player> ()) {
+				if (Input.GetKey (KeyCode.E)) {
+					CameraMan.instance.cameraMode = CameraMan.CameraModes.Full;
+				} else {
+					CameraMan.instance.cameraMode = CameraMan.CameraModes.Follow;
+				}
+					
 			}
 		}
 	}

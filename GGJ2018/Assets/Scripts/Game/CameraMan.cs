@@ -13,7 +13,7 @@ public class CameraMan : MonoBehaviour {
 	private Camera thisCamera;
 
 
-	public enum CameraModes{Free, Follow, Full}
+	public enum CameraModes{Follow, Full}
 	public CameraModes cameraMode = CameraModes.Follow;
 
 	void Awake () {
@@ -30,9 +30,6 @@ public class CameraMan : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		switch (cameraMode) {
-		case CameraModes.Free:
-			thisCamera.orthographicSize = originalOrthoSize;
-			break;
 		case CameraModes.Follow:
 			thisCamera.orthographicSize = originalOrthoSize;
 			if (target) SlideSmoothestlyToTargetGrounded (target.transform.position);

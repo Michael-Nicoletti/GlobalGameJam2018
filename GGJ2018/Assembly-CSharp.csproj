@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\BoardUnits\GameUnit.cs" />
      <Compile Include="Assets\Scripts\BoardUnits\Minion.cs" />
      <Compile Include="Assets\Scripts\BoardUnits\Player.cs" />
+     <Compile Include="Assets\Scripts\BoardUnits\Wisp.cs" />
      <Compile Include="Assets\Scripts\Game\CameraMan.cs" />
      <Compile Include="Assets\Scripts\Game\ControlHandler.cs" />
      <Compile Include="Assets\Scripts\Game\GameManager.cs" />

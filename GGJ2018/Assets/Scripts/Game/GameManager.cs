@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour {
 			playerTurn = 1;
 
 		GameUnit playerInControl = WhoseTurnIsIt ().GetComponent<GameUnit>();
-		if (playerInControl.GetComponent<Player> () != null) playerInControl.GetComponent<Player>().refreshArrows() ;
+		if (playerInControl.GetComponent<Player> () != null) playerInControl.GetComponent<Player>().RefreshArrows() ;
 		playerInControl.RefreshMoves();
 		CameraMan.instance.SetTarget (WhoseTurnIsIt().transform);
 		playerInControl.WakeUp ();

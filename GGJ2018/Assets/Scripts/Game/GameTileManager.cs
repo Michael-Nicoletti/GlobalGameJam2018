@@ -27,6 +27,9 @@ public class GameTileManager : MonoBehaviour {
 
 	private int[] rotations = new int[] { 0, 90, 180, 270 };
 
+	private List<GameTile> activeTiles = new List<GameTile>();
+
+
 	void Awake() {
 		instance = this;
 	}
@@ -118,5 +121,23 @@ public class GameTileManager : MonoBehaviour {
 	}
 	public int RandomRotationAngle() {
 		return rotations [Random.Range (0, rotations.Length)];
+	}
+
+	public void UpdateActiveListBasedOnPlayerPosition(Vector3 playerPos) {
+		List<GameTile> newList = new List<GameTile> ();
+		foreach (GameTile tile in activeTiles) {
+			tile.inRange = false;
+		}
+		GameTile checkTile = GetTileFromPos(new Vector3(RoundToNearestFive(Mathf.RoundToInt(playerPos.x)), 0, RoundToNearestFive(Mathf.RoundToInt(playerPos.z))));
+		if (checkTile != null) {
+			for (int i = 0; i < checkTile.tiles.Length; i++) {
+				newList.Add (checkTile.tiles [i]);
+			}
+		}
+		for (int i = 0; i < newList.Count; i++) {
+			if(!activeTiles.Contains(newList[i])) {
+				//activeTiles
+			}
+		}
 	}
 }

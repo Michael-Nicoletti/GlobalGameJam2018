@@ -1,34 +1,53 @@
+# =============== #
+# Unity generated #
+# =============== #
+UnityPlayer_Symbols.pdb
 
-Temp/
-Library/
-obj/
+Temp/*
+Library/*
+Assets/ShaderForge/*
+Assets/Examples/*
+Assets/Standard Assets/*
+Assets/Local/*
+
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+obj/*
 *.svd
+*.userprefs
 *.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
 
-!Library/*.asset
-!Library/AssetImportState
-!Library/AssetVersioning.db
-!Library/BuildPlayer.prefs
-!Library/ScriptMapper
-!Library/assetservercachev3
-!Library/expandedItems
-!Library/guidmapper
-!Library/unity default resources
-!Library/unity editor resources
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-
-
-/Project/Project.userprefs
-/Project/Assembly-CSharp.csproj
-/Project/Assembly-CSharp.pidb
-/Project/Assembly-CSharp-Editor.csproj
-/Project/Assembly-CSharp-Editor.pidb
-/Project/Assembly-CSharp-Editor-vs.csproj
-/Project/Assembly-CSharp-firstpass.csproj
-/Project/Assembly-CSharp-firstpass.pidb
-/Project/Assembly-CSharp-firstpass-vs.csproj
-/Project/Assembly-CSharp-vs.csproj
-/Project/Assembly-UnityScript-firstpass.pidb
-/Project/Assembly-UnityScript-firstpass.unityproj
-/Project/Assembly-UnityScript-firstpass-vs.unityproj
-/Project/Project.suo
+# ===== #
+# Other #
+# ===== #
+*.zip
+*.rar
+*.psd
+*.psd.meta
+Assets/Examples.meta
+Assets/ShaderForge.meta
+Assets/Local.meta
+Assets/StandardAssets.meta
+Assets/Materials/LightingPresets/Test/*
+Assets/Materials/LightingPresets/Test.meta
+GGJ2018/Library/
+GGJ2018/

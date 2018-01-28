@@ -27,6 +27,9 @@ public class GameTileManager : MonoBehaviour {
 
 	private int[] rotations = new int[] { 0, 90, 180, 270 };
 
+	private List<GameTile> activeTiles = new List<GameTile>();
+
+
 	void Awake() {
 		instance = this;
 	}
@@ -114,9 +117,38 @@ public class GameTileManager : MonoBehaviour {
 	}
 
 	public int RoundToNearestFive(int preNum){
-		return preNum += (5 - Mathf.RoundToInt (preNum % 5));
+		return (int)Mathf.Round (preNum / 5) * 5;
 	}
 	public int RandomRotationAngle() {
 		return rotations [Random.Range (0, rotations.Length)];
+	}
+
+	public void UpdateActiveListBasedOnPlayerPosition(Vector3 playerPos) {
+		List<GameTile> newList = new List<GameTile> ();
+		foreach (GameTile tile in activeTiles) {
+			tile.inRange = false;
+		}
+		GameTile checkTile = GetTileFromPos(new Vector3(RoundToNearestFive(Mathf.RoundToInt(playerPos.x)), 0, RoundToNearestFive(Mathf.RoundToInt(playerPos.z))));
+		if (checkTile != null) {
+			newList.Add (checkTile);
+			for (int i = 0; i < checkTile.tiles.Length; i++) {
+				newList.Add (checkTile.tiles [i]);
+			}
+		}
+		for (int i = 0; i < activeTiles.Count; i++) {
+			if(!newList.Contains(activeTiles[i])) {
+				activeTiles.RemoveAt (i);
+			}
+		}
+
+		for (int i = 0; i < newList.Count; i++) {
+			if (!activeTiles.Contains (newList [i])) {
+				activeTiles.Add (newList [i]);
+			}
+		}
+		foreach (GameTile tile in activeTiles) {
+			tile.inRange = true;
+
+		}
 	}
 }

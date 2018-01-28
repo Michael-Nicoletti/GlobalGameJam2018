@@ -5960,6 +5960,7 @@ MonoBehaviour:
   minSpaceBetweenTransmitters: 5
   minSpaceBetweenSpawnpoints: 10
   minSpaceBetweenSpawnpointsAndTransmitters: 5
+  spawnPoints: []
 --- !u!4 &802862865
 Transform:
   m_ObjectHideFlags: 0
@@ -14802,7 +14803,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4936100010804872, guid: 6a7e58f9001294544bc4e9c25f9d9423, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 11
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4936100010804872, guid: 6a7e58f9001294544bc4e9c25f9d9423, type: 2}
       propertyPath: m_LocalPosition.z

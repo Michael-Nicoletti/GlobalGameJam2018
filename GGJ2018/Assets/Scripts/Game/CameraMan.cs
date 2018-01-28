@@ -9,6 +9,9 @@ public class CameraMan : MonoBehaviour {
 	[SerializeField] private float CameraSpeed = 1;
 	private Transform target;
 
+	public enum CameraModes{Free, Follow}
+	CameraModes cameraMode = CameraModes.Follow;
+
 	void Awake () {
 		instance = this;
 	}
@@ -17,16 +20,20 @@ public class CameraMan : MonoBehaviour {
 	void Start () {
 		
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+		switch (cameraMode) {
+		case CameraModes.Free:
+			break;
+		case CameraModes.Follow:
+			if (target) SlideSmoothestlyToTarget (target.transform.position);
+			break;
+		}
 	}
 
 	void FixedUpdate() {
 		
-		if (target) SlideSmoothestlyToTarget (target.transform.position);
-
 	}
 
 	public void SlideSmoothestlyToTarget(Vector3 target)
@@ -44,5 +51,9 @@ public class CameraMan : MonoBehaviour {
 
 	public Vector3 GetCameraOffset(){
 		return cameraOffset;
+	}
+
+	public void ChangeCameraModes(CameraModes cm){
+		cameraMode = cm;
 	}
 }

@@ -15,10 +15,10 @@ public class Player : GameUnit {
 	}
 
 	protected override void FixedUpdate(){
-		base.FixedUpdate ();
+		base.FixedUpdate ();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 	}
 
 	public void TryMovement(GameObject target){
-		pathfindFromTo (transform.position, target.transform.position);
+		pathfindFromTo (transform.position, target.transform.position, false);
 	}
 }

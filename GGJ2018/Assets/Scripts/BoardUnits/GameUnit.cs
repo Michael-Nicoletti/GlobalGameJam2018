@@ -25,12 +25,12 @@ public class GameUnit : MonoBehaviour {
 
 	protected int movesRemaining = 2;
 	protected float tileSnapDistance = 0.1f;
-	protected TextMesh movesRemainingUI;
+	protected bool asleep = true;
 
 	List<GameTile> pathing = new List<GameTile>();
 
 	void Awake() {
-		movesRemainingUI = CameraMan.instance.GetComponent (typeof(TextMesh)) as TextMesh;
+		
 	}
 
 	// Use this for initialization
@@ -39,7 +39,8 @@ public class GameUnit : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected virtual void FixedUpdate () {
-		TravelAlongTiles ();
+		if (!asleep) TravelAlongTiles ();
+
 
 	}
 
@@ -47,9 +48,10 @@ public class GameUnit : MonoBehaviour {
 	//Run "pathfindFromTo," and feed in the start and target tiles by their vector.
 	//The unit will automatically attempt to travel along those tiles.
 	//Modify units snapping to tiles via "tileSnapDistance
-	protected void pathfindFromTo(Vector3 start, Vector3 target)
+	protected void pathfindFromTo(Vector3 start, Vector3 target, bool preview)
 	{
-		if (start == target || GameTileManager.instance.GetTileFromPos(RoundVectorToFives(target)).type == GameTile.TileType.Impassible ) return;
+		if (start == target || GameTileManager.instance.GetTileFromPos(RoundVectorToFives(target)).type == GameTile.TileType.Impassible 
+			|| GameTileManager.instance.GetTileFromPos(RoundVectorToFives(target)).type == GameTile.TileType.Transmitter ) return;
 		List <Node> foundNodes = new List<Node>();
 		List <Node> closedNodes = new List<Node>();
 		bool keepSearching = true;
@@ -62,16 +64,28 @@ public class GameUnit : MonoBehaviour {
 		//Check all tiles that are neighbouring the one the player is currently on. 
 		//Add them to the list of nodes to scan. (The start node is included by default).
 		while (keepSearching && pathExists) {
-			if (currentNode.me.tiles[(int)GameTile.Direction.Up] != null && !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Up], closedNodes) && currentNode.me.tiles[(int)GameTile.Direction.Up].type != GameTile.TileType.Impassible) {
+			if (currentNode.me.tiles[(int)GameTile.Direction.Up] != null 
+				&& !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Up], closedNodes) 
+				&& currentNode.me.tiles[(int)GameTile.Direction.Up].type != GameTile.TileType.Impassible
+				&& currentNode.me.tiles[(int)GameTile.Direction.Up].type != GameTile.TileType.Transmitter) {
 				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Up], currentNode));
 			}
-			if (currentNode.me.tiles[(int)GameTile.Direction.Right] != null && !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Right], closedNodes) && currentNode.me.tiles[(int)GameTile.Direction.Right].type != GameTile.TileType.Impassible) {
+			if (currentNode.me.tiles[(int)GameTile.Direction.Right] != null 
+				&& !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Right], closedNodes) 
+				&& currentNode.me.tiles[(int)GameTile.Direction.Right].type != GameTile.TileType.Impassible
+				&& currentNode.me.tiles[(int)GameTile.Direction.Right].type != GameTile.TileType.Transmitter) {
 				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Right], currentNode));
 			}
-			if (currentNode.me.tiles[(int)GameTile.Direction.Down] != null && !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Down], closedNodes) && currentNode.me.tiles[(int)GameTile.Direction.Down].type != GameTile.TileType.Impassible) {
+			if (currentNode.me.tiles[(int)GameTile.Direction.Down] != null 
+				&& !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Down], closedNodes) 
+				&& currentNode.me.tiles[(int)GameTile.Direction.Down].type != GameTile.TileType.Impassible
+				&& currentNode.me.tiles[(int)GameTile.Direction.Down].type != GameTile.TileType.Transmitter) {
 				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Down], currentNode));
 			}
-			if (currentNode.me.tiles[(int)GameTile.Direction.Left] != null && !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Left], closedNodes) && currentNode.me.tiles[(int)GameTile.Direction.Left].type != GameTile.TileType.Impassible) {
+			if (currentNode.me.tiles[(int)GameTile.Direction.Left] != null 
+				&& !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Left], closedNodes) 
+				&& currentNode.me.tiles[(int)GameTile.Direction.Left].type != GameTile.TileType.Impassible
+				&& currentNode.me.tiles[(int)GameTile.Direction.Left].type != GameTile.TileType.Transmitter) {
 				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Left], currentNode));
 			}
 
@@ -168,5 +182,13 @@ public class GameUnit : MonoBehaviour {
 
 	public int GetMaxMoves(){
 		return maxMoves;
+	}
+
+	public void WakeUp(){
+		asleep = false;
+	}
+
+	public void Sleep(){
+		asleep = true;
 	}
 }

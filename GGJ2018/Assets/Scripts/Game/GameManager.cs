@@ -21,7 +21,14 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//Spawn Player
+		//Spawn Player One
+		playersInGame.Add(Instantiate (playerPrefab));
+		WhoseTurnIsIt ().GetComponent<GameUnit> ().WakeUp ();
+		CameraMan.instance.SetTarget (WhoseTurnIsIt().transform);
+
+		//Spawn Other Players
+		playersInGame.Add(Instantiate (playerPrefab));
+		playersInGame.Add(Instantiate (playerPrefab));
 		playersInGame.Add(Instantiate (playerPrefab));
 	}
 
@@ -33,15 +40,22 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		
 	}
 		
 	public GameObject WhoseTurnIsIt() {
 		return playersInGame[playerTurn-1];
 	}
 
-	public void NextTurn(){
+	public IEnumerator NextTurn(){
+		Debug.Log ("Next turn!");
 		playerTurn++;
 		if (playerTurn > 4)
 			playerTurn = 1;
+		GameUnit playerInControl = WhoseTurnIsIt ().GetComponent<GameUnit>();
+		playerInControl.RefreshMoves();
+		CameraMan.instance.SetTarget (WhoseTurnIsIt().transform);
+		playerInControl.WakeUp ();
+		yield return new WaitForSeconds(2);
 	}
 }

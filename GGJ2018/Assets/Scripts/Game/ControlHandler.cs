@@ -13,13 +13,17 @@ public class ControlHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		MouseDetection ();	
-
 		if (Input.GetMouseButtonDown (0)) {
 			if (highlightedElement != null && highlightedElement.GetComponent(typeof (GameTile)) != null) {
 				if (GameManager.instance.WhoseTurnIsIt ().GetComponent(typeof (Player)) != null) {
 					GameManager.instance.WhoseTurnIsIt ().SendMessage("TryMovement", highlightedElement);
 				}
 			}
+		}
+
+		if (Input.GetButtonDown (buttonName: "Next Turn")) {
+			Debug.Log ("t trigger");
+			StartCoroutine(GameManager.instance.NextTurn());
 		}
 	}
 
@@ -54,6 +58,7 @@ public class ControlHandler : MonoBehaviour {
 				highlightedElement = GameTileManager.instance.GetTileFromPos (closestGameTile).gameObject;
 			}
 		}
+		//GameManager.instance.WhoseTurnIsIt().
 
 	}
 }

@@ -192,6 +192,7 @@ public class Player : GameUnit {
 			GameObject wispy = Instantiate (wispPrefab, transform.position, Quaternion.identity);
 			wispy.GetComponent<Wisp> ().Prime (this.gameObject, gt);
 			GameManager.instance.AddWispToGame (wispy);
+			haveWisp = false;
 		}
 
 		return;

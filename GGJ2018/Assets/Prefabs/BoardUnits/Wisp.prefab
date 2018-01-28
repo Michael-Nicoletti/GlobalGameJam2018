@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9818ef0c43260874c93c61eadd349ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMoves: 1
-  tileTransitionSpeed: 2
+  maxMoves: 2
+  tileTransitionSpeed: 1
 --- !u!135 &135194565182236240
 SphereCollider:
   m_ObjectHideFlags: 1

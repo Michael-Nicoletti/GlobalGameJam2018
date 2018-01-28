@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour {
 				minion.WakeUp ();
 				minion.RefreshMoves ();
 				minion.HuntAndPester ();
-				yield return new WaitForSeconds (0.5f);
+				yield return new WaitForSeconds (1f);
 			}
 			yield return new WaitForSeconds (2);
 
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour {
 				wisp.WakeUp ();
 				wisp.RefreshMoves ();
 				wisp.ScoutOrReturn ();
-				yield return new WaitForSeconds (1f);
+				yield return new WaitForSeconds (2.5f);
 			}
 			yield return new WaitForSeconds (2);
 		}

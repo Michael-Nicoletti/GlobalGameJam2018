@@ -132,8 +132,6 @@ public class Wisp : GameUnit {
 			if (pathing [pathing.Count - 1].transform.position == RoundVectorToFives (owner.transform.position))
 				homeReached = true;
 			
-			Debug.Log (pathing [pathing.Count - 1].transform.position + " === " + RoundVectorToFives (owner.transform.position) + " HOW ABOUT HOME REACHED: " + homeReached );	
-
 			if (Vector3.Distance (transform.position, pathing[pathing.Count-1].transform.position) < tileSnapDistance) {
 				transform.position = pathing[pathing.Count-1].transform.position;
 				pathing.RemoveAt (pathing.Count-1);

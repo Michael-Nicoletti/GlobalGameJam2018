@@ -1,6 +1,6 @@
 
-Temp/
-Library/
+/GGJ2018/Temp/
+/GGJ2018/Library/
 obj/
 *.svd
 *.csproj
@@ -19,17 +19,17 @@ obj/
 
 
 
-/Project/Project.userprefs
-/Project/Assembly-CSharp.csproj
-/Project/Assembly-CSharp.pidb
-/Project/Assembly-CSharp-Editor.csproj
-/Project/Assembly-CSharp-Editor.pidb
-/Project/Assembly-CSharp-Editor-vs.csproj
-/Project/Assembly-CSharp-firstpass.csproj
-/Project/Assembly-CSharp-firstpass.pidb
-/Project/Assembly-CSharp-firstpass-vs.csproj
-/Project/Assembly-CSharp-vs.csproj
-/Project/Assembly-UnityScript-firstpass.pidb
-/Project/Assembly-UnityScript-firstpass.unityproj
-/Project/Assembly-UnityScript-firstpass-vs.unityproj
-/Project/Project.suo
+/GGJ2018/Project/Project.userprefs
+/GGJ2018/Project/Assembly-CSharp.csproj
+/GGJ2018/Project/Assembly-CSharp.pidb
+/GGJ2018/Project/Assembly-CSharp-Editor.csproj
+/GGJ2018/Project/Assembly-CSharp-Editor.pidb
+/GGJ2018/Project/Assembly-CSharp-Editor-vs.csproj
+/GGJ2018/Project/Assembly-CSharp-firstpass.csproj
+/GGJ2018/Project/Assembly-CSharp-firstpass.pidb
+/GGJ2018/Project/Assembly-CSharp-firstpass-vs.csproj
+/GGJ2018/Project/Assembly-CSharp-vs.csproj
+/GGJ2018/Project/Assembly-UnityScript-firstpass.pidb
+/GGJ2018/Project/Assembly-UnityScript-firstpass.unityproj
+/GGJ2018/Project/Assembly-UnityScript-firstpass-vs.unityproj
+/GGJ2018/Project/Project.suo

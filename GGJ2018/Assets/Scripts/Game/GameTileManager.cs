@@ -135,15 +135,12 @@ public class GameTileManager : MonoBehaviour {
 		GameTile checkTile = GetTileFromPos(new Vector3(RoundToNearestFive(Mathf.RoundToInt(playerPos.x)), 0, RoundToNearestFive(Mathf.RoundToInt(playerPos.z))));
 		if (checkTile != null) {
 			newList.Add (checkTile);
-			Debug.DrawRay (checkTile.transform.position, Vector3.up * 10, Color.blue, 10.0f);
 			for (int i = 0; i < checkTile.tiles.Length; i++) {
 				GameTile addTile = checkTile.tiles [i];
 				if (addTile != null) {
 					newList.Add (addTile);
-					Debug.DrawRay (addTile.transform.position, Vector3.up * 10, Color.blue, 10.0f);
 					for (int j = 0; j < addTile.tiles.Length; j++) {
 						if (addTile.tiles [j] != null && !newList.Contains (addTile.tiles [j])) {
-							Debug.DrawRay (addTile.tiles[j].transform.position, Vector3.up * 10, Color.blue, 10.0f);
 							newList.Add(addTile.tiles[j]);
 						}
 					}
@@ -151,12 +148,7 @@ public class GameTileManager : MonoBehaviour {
 			}
 		}
 
-		for (int i = 0; i < activeTiles.Count; i++) {
-			Debug.DrawRay (activeTiles [i].transform.position, Vector3.up * 10, Color.black, 10.0f);	
-			if(!newList.Contains(activeTiles[i])) {
-				activeTiles.Remove(activeTiles[i]);
-			}
-		}
+		activeTiles.Clear ();
 
 		for (int i = 0; i < newList.Count; i++) {
 			if (!activeTiles.Contains (newList [i])) {

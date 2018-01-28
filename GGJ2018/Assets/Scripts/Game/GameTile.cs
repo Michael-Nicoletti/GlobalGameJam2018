@@ -9,10 +9,20 @@ public class GameTile : MonoBehaviour {
 
 	public TileType type = TileType.Passable;
 	public FoliageType foliageType;
-
 	public GameTile[] tiles = new GameTile[8];
 
+	[Header("Animator Info"), Range(0,1)]
+	public float rotationProgress = 1;
+	public int[] rotationStops = new int[2];
+	public bool inRange = false;
+
+	private Animator anim;
+	private Vector3 startRot;
+	private Vector3 endRot;
+	private float prevRotationProgress;
+
 	public void Initialize() {
+		anim = GetComponent<Animator>();
 		RaycastHit outHit = new RaycastHit ();
 
 		//UP LEFT
@@ -88,12 +98,18 @@ public class GameTile : MonoBehaviour {
 
 		spawnTile = Instantiate (spawnTile, transform);
 		spawnTile.transform.rotation = Quaternion.Euler(new Vector3 (0, (float)GameTileManager.instance.RandomRotationAngle(), 0));
+
+		if (GameTileManager.instance.baseTilePrefabs [(int)foliageType].foliagePrefabs.Count > 0) {
+			Instantiate (GameTileManager.instance.baseTilePrefabs [(int)foliageType].foliagePrefabs [Random.Range (0, GameTileManager.instance.baseTilePrefabs [(int)foliageType].foliagePrefabs.Count)], transform);
+		}
+		endRot = new Vector3(rotationStops[1], transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+		startRot = new Vector3(rotationStops[0], transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 	}
 
 	public bool CheckSides() {
 		for (int i = 0; i < tiles.Length; i++) {
 			if (i % 2 == 0) {
-				if (tiles [i].type == TileType.Impassible || tiles [i].type == null) {
+				if (tiles [i] == null || tiles [i].type == TileType.Impassible) {
 					return false;
 				}
 			}
@@ -101,24 +117,84 @@ public class GameTile : MonoBehaviour {
 		return true;
 	}
 
-	public bool CheckSidesAndDiags(int depth) {														//How far down the hole do we go?
+	void Update() {
+		UpdateAnim ();
+		if (rotationProgress != prevRotationProgress) {
+			transform.rotation = Quaternion.Lerp (Quaternion.Euler (startRot), Quaternion.Euler (endRot), rotationProgress);	
+			prevRotationProgress = rotationProgress;
+		}
+
+	}
+
+	public void UpdateAnim() {
+		if (anim != null) {
+			//anim.SetBool ("active", );
+		}
+	}
+
+	public bool CheckTransmitterPlacement(int depth) {														//How far down the hole do we go?
 		int depthCount = 0;
 		GameTile currentCheckTile = null;
-		while (depthCount < depth) {
-			if(currentCheckTile!=null) {
-				if(currentCheckTile.type!=TileType.Transmitter) {
-					//currentCheckTile = left;
+		for (int i = 0; i < tiles.Length; i++) {
+			depthCount = 0;
+			currentCheckTile = tiles [i];
+			while (depthCount < depth) {
+				if (currentCheckTile == null) {
+					break;
 				}
+				if (currentCheckTile.type == TileType.Transmitter) {
+					return false;
+				} else {
+					Debug.DrawRay (currentCheckTile.transform.position, Vector3.up, Color.red, 10.0f);
+					currentCheckTile = currentCheckTile.tiles [i]; 
+				}
+				depthCount++;
 			}
-			depthCount++;
 		}
-		return false;
+		return true;
+	}
+
+	public bool CheckSpawnPlacement(int depthTransmitter, int depthSpawnpoints) {
+		int depthCount = 0;
+		GameTile currentCheckTile = null;
+		for (int i = 0; i < tiles.Length; i++) {
+			depthCount = 0;
+			currentCheckTile = tiles [i];
+			while (depthCount < depthSpawnpoints) {
+				if (currentCheckTile == null) {
+					break;
+				}
+				if (depthCount < depthTransmitter) {
+					if (currentCheckTile.type == TileType.Transmitter) {
+						return false;
+					}
+				}
+				if (currentCheckTile.type == TileType.SpawnTile) {
+					return false;
+				} else {
+					Debug.DrawRay (currentCheckTile.transform.position, Vector3.up, Color.red, 10.0f);
+					currentCheckTile = currentCheckTile.tiles [i]; 
+				}
+				depthCount++;
+			}
+		}
+		return true;
+
 	}
 
 	public void SetImpassible() {
 		type = TileType.Impassible;
 		GameObject tempGo = Instantiate(GameTileManager.instance.impassiblePrefab, transform);
-		tempGo.transform.position += Vector3.up;
-		//Spawn on a rock or something
+	}
+
+	public void SetTransmitter() { 
+		type = TileType.Transmitter;
+		Debug.DrawRay (transform.position, Vector3.up * 10, Color.green, 10.0f);
+		GameObject tempGo = Instantiate(GameTileManager.instance.transmitterPrefab, transform);
+	}
+
+	public void SetSpawnTile() {
+		type = TileType.SpawnTile;
+		Debug.DrawRay (transform.position, Vector3.up * 10, Color.magenta, 10.0f);
 	}
 }

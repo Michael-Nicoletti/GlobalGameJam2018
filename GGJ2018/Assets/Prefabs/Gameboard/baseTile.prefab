@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4113312239719956}
   - component: {fileID: 65802479520136206}
   - component: {fileID: 114623658304675988}
+  - component: {fileID: 95741805010518220}
   m_Layer: 0
   m_Name: baseTile
   m_TagString: GameTile
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054197410536204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,6 +54,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 1, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95741805010518220
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054197410536204}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ba510f3a0daf824588cfb434639cd56, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114623658304675988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,8 +84,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   foliageType: 0
-  left: {fileID: 0}
-  right: {fileID: 0}
-  up: {fileID: 0}
-  down: {fileID: 0}
-  moveCost: 1
+  tiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rotationProgress: 1
+  rotationStops: b40000004cffffff
+  inRange: 0

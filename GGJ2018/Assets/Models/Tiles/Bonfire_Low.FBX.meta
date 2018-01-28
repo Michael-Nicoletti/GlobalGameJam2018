@@ -6,12 +6,33 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Bonfire_Low
+    100004: Object001
+    100006: Bonfire_Base
+    100008: Bonfire_logs
     400000: //RootNode
+    400002: Bonfire_Low
+    400004: Object001
+    400006: Bonfire_Base
+    400008: Bonfire_logs
     2100000: 03 - Default
     2100002: 07 - Default
+    2100004: Bonfire_Base
+    2100006: Bonfire_Logs
     2300000: //RootNode
+    2300002: Bonfire_Low
+    2300004: Object001
+    2300006: Bonfire_Base
+    2300008: Bonfire_logs
     3300000: //RootNode
+    3300002: Bonfire_Low
+    3300004: Object001
+    3300006: Bonfire_Base
+    3300008: Bonfire_logs
     4300000: Bonfire_Low
+    4300002: Object001
+    4300004: Bonfire_Base
+    4300006: Bonfire_logs
     9500000: //RootNode
   externalObjects: {}
   materials:

@@ -8,17 +8,25 @@ ModelImporter:
     100000: Grid_Border
     100002: //RootNode
     100004: Tiles_01
+    100006: Tile_01
     400000: Grid_Border
     400002: //RootNode
     400004: Tiles_01
+    400006: Tile_01
     2100000: 07 - Default
     2100002: 01 - Default
+    2100004: grid border
     2300000: Grid_Border
     2300002: Tiles_01
+    2300004: //RootNode
+    2300006: Tile_01
     3300000: Grid_Border
     3300002: Tiles_01
+    3300004: //RootNode
+    3300006: Tile_01
     4300000: Grid_Border
     4300002: Tiles_01
+    4300004: Tile_01
     9500000: //RootNode
   externalObjects: {}
   materials:

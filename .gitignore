@@ -1,11 +1,11 @@
 
-/GGJ2018/Temp/
-/GGJ2018/Library/
+GGJ2018/Temp/
+GGJ2018/Library/
 obj/
 *.svd
 *.csproj
 *.meta
-/GGJ2018/Library/metadata/
+GGJ2018/Library/metadata/
 !Library/*.asset
 !Library/AssetImportState
 !Library/AssetVersioning.db
@@ -19,17 +19,17 @@ obj/
 
 
 
-/GGJ2018/Project.userprefs
-/GGJ2018/Assembly-CSharp.csproj
-/GGJ2018/Assembly-CSharp.pidb
-/GGJ2018/Assembly-CSharp-Editor.csproj
-/GGJ2018/Assembly-CSharp-Editor.pidb
-/GGJ2018/Assembly-CSharp-Editor-vs.csproj
-/GGJ2018/Assembly-CSharp-firstpass.csproj
-/GGJ2018/Assembly-CSharp-firstpass.pidb
-/GGJ2018/Assembly-CSharp-firstpass-vs.csproj
-/GGJ2018/Assembly-CSharp-vs.csproj
-/GGJ2018/Assembly-UnityScript-firstpass.pidb
-/GGJ2018/Assembly-UnityScript-firstpass.unityproj
-/GGJ2018/Assembly-UnityScript-firstpass-vs.unityproj
-/GGJ2018/Project.suo
+GGJ2018/Project.userprefs
+GGJ2018/Assembly-CSharp.csproj
+GGJ2018/Assembly-CSharp.pidb
+GGJ2018/Assembly-CSharp-Editor.csproj
+GGJ2018/Assembly-CSharp-Editor.pidb
+GGJ2018/Assembly-CSharp-Editor-vs.csproj
+GGJ2018/Assembly-CSharp-firstpass.csproj
+GGJ2018/Assembly-CSharp-firstpass.pidb
+GGJ2018/Assembly-CSharp-firstpass-vs.csproj
+GGJ2018/Assembly-CSharp-vs.csproj
+GGJ2018/Assembly-UnityScript-firstpass.pidb
+GGJ2018/Assembly-UnityScript-firstpass.unityproj
+GGJ2018/Assembly-UnityScript-firstpass-vs.unityproj
+GGJ2018/Project.suo

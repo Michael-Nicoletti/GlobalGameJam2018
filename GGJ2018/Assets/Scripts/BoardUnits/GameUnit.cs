@@ -24,7 +24,7 @@ public class GameUnit : MonoBehaviour {
 	[SerializeField]int tileTransitionSpeed = 1;
 
 	protected int movesRemaining = 2;
-	protected float tileSnapDistance = 0.3f;
+	protected float tileSnapDistance = 1f;
 
 	List<GameTile> pathing = new List<GameTile>();
 
@@ -33,49 +33,47 @@ public class GameUnit : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-		travelAlongTiles (pathing);
+	protected virtual void FixedUpdate () {
+		TravelAlongTiles (pathing);
 	}
 
 	//HOW TO USE PATHFINDING
 	//Run "pathfindFromTo," and feed in the start and target tiles by their vector.
 	//The unit will automatically attempt to travel along those tiles.
 	//Modify units snapping to tiles via "tileSnapDistance
-	protected List<GameTile> pathfindFromTo(Vector3 start, Vector3 target)
+	//protected List<GameTile> pathfindFromTo(Vector3 start, Vector3 target)
+	protected void pathfindFromTo(Vector3 start, Vector3 target)
 	{
-		if (start == target) return null;
-
+		if (start == target) return;
 		List <Node> foundNodes = new List<Node>();
 		List <Node> closedNodes = new List<Node>();
 		bool keepSearching = true;
 		bool pathExists = true;
 		Node currentNode;
 
-		Ray directPath = new Ray(transform.position, target);
-		foundNodes.Add(new Node(GameTileManager.instance.GetTileFromPos (roundVectorToThrees(transform.position)), null));
+		foundNodes.Add(new Node(GameTileManager.instance.GetTileFromPos (RoundVectorToThrees(transform.position)), null));
 		currentNode = foundNodes [0];
 
 		//Check all tiles that are neighbouring the one the player is currently on. 
 		//Add them to the list of nodes to scan. (The start node is included by default).
 		while (keepSearching && pathExists) {
-			if (currentNode.me.tiles[(int)GameTile.Direction.Up] != null && !closedNodes.Contains(new Node(currentNode.me.tiles[(int)GameTile.Direction.Up], currentNode)) && currentNode.me.tiles[(int)GameTile.Direction.Up].type != GameTile.TileType.Impassible) {
-				Debug.Log (currentNode.me.tiles[(int)GameTile.Direction.Up].type);
+			if (currentNode.me.tiles[(int)GameTile.Direction.Up] != null && !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Up], closedNodes) && currentNode.me.tiles[(int)GameTile.Direction.Up].type != GameTile.TileType.Impassible) {
 				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Up], currentNode));
 			}
-			if (currentNode.me.tiles[(int)GameTile.Direction.Right] != null && !closedNodes.Contains(new Node(currentNode.me.tiles[(int)GameTile.Direction.Right], currentNode)) && currentNode.me.tiles[(int)GameTile.Direction.Right].type != GameTile.TileType.Impassible) {
+			if (currentNode.me.tiles[(int)GameTile.Direction.Right] != null && !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Right], closedNodes) && currentNode.me.tiles[(int)GameTile.Direction.Right].type != GameTile.TileType.Impassible) {
 				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Right], currentNode));
 			}
-			if (currentNode.me.tiles[(int)GameTile.Direction.Down] != null && !closedNodes.Contains(new Node(currentNode.me.tiles[(int)GameTile.Direction.Down], currentNode)) && currentNode.me.tiles[(int)GameTile.Direction.Down].type != GameTile.TileType.Impassible) {
+			if (currentNode.me.tiles[(int)GameTile.Direction.Down] != null && !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Down], closedNodes) && currentNode.me.tiles[(int)GameTile.Direction.Down].type != GameTile.TileType.Impassible) {
 				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Down], currentNode));
 			}
-			if (currentNode.me.tiles[(int)GameTile.Direction.Left] != null && !closedNodes.Contains(new Node(currentNode.me.tiles[(int)GameTile.Direction.Left], currentNode)) && currentNode.me.tiles[(int)GameTile.Direction.Left].type != GameTile.TileType.Impassible) {
+			if (currentNode.me.tiles[(int)GameTile.Direction.Left] != null && !DoesNodeListContainGameTile(currentNode.me.tiles[(int)GameTile.Direction.Left], closedNodes) && currentNode.me.tiles[(int)GameTile.Direction.Left].type != GameTile.TileType.Impassible) {
 				foundNodes.Add (new Node(currentNode.me.tiles[(int)GameTile.Direction.Left], currentNode));
 			}
 
 			//Scan all found nodes for fitness.
 			Node mostFit = new Node();
 			for (int i = 0; i <= foundNodes.Count - 1; i++) {
-				if (Vector3.Distance (foundNodes [i].me.transform.position, target) < Vector3.Distance (currentNode.me.transform.position, target)) {
+				if (mostFit.me == null || (Vector3.Distance (foundNodes [i].me.transform.position, target) < Vector3.Distance (mostFit.me.transform.position, target)) && !closedNodes.Contains(foundNodes[i])) {
 					mostFit = foundNodes [i];
 				}
 			}
@@ -101,11 +99,11 @@ public class GameUnit : MonoBehaviour {
 			//and we've assigned it as the "most fit." Let's keep looping.
 
 			foreach (Node n in foundNodes) {
-				Debug.DrawRay (n.me.transform.position, Vector3.up * 5f, Color.yellow, 1f);
+				Debug.DrawRay (n.me.transform.position, Vector3.up * 8f, Color.yellow, 0.5f);
 			}
 
 			foreach (Node n in closedNodes) {
-				Debug.DrawRay (n.me.transform.position, Vector3.up * 5f, Color.red, 1f);
+				Debug.DrawRay (n.me.transform.position, Vector3.up * 8f, Color.red, 0.5f);
 			}
 		}
 
@@ -120,23 +118,31 @@ public class GameUnit : MonoBehaviour {
 		}
 
 		pathing = finalPath;
-		return finalPath;
 	}
 
-	//Travel along the
-	protected void travelAlongTiles(List<GameTile> p){
-		if (pathing[0] != null){
-			transform.position = Vector3.Lerp (transform.position, pathing[0].transform.position, Time.deltaTime * tileTransitionSpeed);
-			if (Vector3.Distance (transform.position, pathing[0].transform.position) < tileSnapDistance) {
-				transform.position = pathing [0].transform.position;
-				pathing.RemoveAt (0);
+	//Travel along the tiles set in pathfindFromTo.
+	void TravelAlongTiles(List<GameTile> p){
+		Debug.DrawRay (p[p.Count-1].transform.position, Vector3.up * 8f, Color.white);
+		if (pathing[p.Count-1] != null){
+			transform.position = Vector3.Lerp (transform.position, p[p.Count-1].transform.position, Time.deltaTime * tileTransitionSpeed);
+			if (Vector3.Distance (transform.position, p[p.Count-1].transform.position) < tileSnapDistance) {
+				transform.position = p[p.Count-1].transform.position;
+				p.RemoveAt (p.Count-1);
 			}
-
 		}
 	}
 
+	bool DoesNodeListContainGameTile(GameTile GT, List<Node> cl){
+		foreach (Node n in cl) {
+			if (n.me == GT)
+				return true;
+		}
+
+		return false;
+	}
+
 	//Rounds all vector numbers to multiples of three.
-	Vector3 roundVectorToThrees(Vector3 n) {
-		return new Vector3 ( Mathf.Round (transform.position.x) / 3 * 3, Mathf.Round (transform.position.y) / 3 * 3, Mathf.Round (transform.position.z) / 3 * 3);
+	Vector3 RoundVectorToThrees(Vector3 n) {
+		return new Vector3 ( Mathf.Round (transform.position.x) / 5 * 5, Mathf.Round (transform.position.y) / 5 * 5, Mathf.Round (transform.position.z) / 5 * 5);
 	}
 }

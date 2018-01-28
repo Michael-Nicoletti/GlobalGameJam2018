@@ -1,11 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\GameTileManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\Game\ControlHandler.cs" Line="6" Column="2" />
-      <File FileName="Assets\Scripts\BoardUnits\Player.cs" Line="23" Column="3" />
-      <File FileName="Assets\Scripts\BoardUnits\GameUnit.cs" Line="170" Column="18" />
-      <File FileName="Assets\Scripts\Game\GameManager.cs" Line="30" Column="4" />
+      <File FileName="Assets\Scripts\Game\ControlHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BoardUnits\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BoardUnits\GameUnit.cs" Line="124" Column="40" />
+      <File FileName="Assets\Scripts\Game\GameManager.cs" Line="30" Column="2" />
+      <File FileName="Assets\Scripts\Game\GameTileManager.cs" Line="81" Column="33" />
+      <File FileName="Assets\Scripts\Game\CameraMan.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

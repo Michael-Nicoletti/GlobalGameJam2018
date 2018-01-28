@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
 
 	void Update() {
 		GameUnit playerInControl = WhoseTurnIsIt ().GetComponent<GameUnit>();
-	//	cameraMoveText.GetComponent<Text>().text = playerInControl.GetMovesRemaining() + " / " + playerInControl.GetMaxMoves();
+		cameraMoveText.GetComponent<Text>().text = playerInControl.GetMovesRemaining() + " / " + playerInControl.GetMaxMoves();
 
 
 	}

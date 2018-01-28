@@ -121,7 +121,7 @@ public class GameUnit : MonoBehaviour {
 			finalPath.Add (w.me);
 			w = w.parent;
 		}
-
+		finalPath.RemoveAt (finalPath.Count-1);
 		pathing = finalPath;
 	}
 

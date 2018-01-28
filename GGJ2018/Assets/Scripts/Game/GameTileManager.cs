@@ -23,6 +23,7 @@ public class GameTileManager : MonoBehaviour {
 	public int minSpaceBetweenTransmitters = 3;
 	public int minSpaceBetweenSpawnpoints = 10;
 	public int minSpaceBetweenSpawnpointsAndTransmitters = 5;
+	public List<GameTile> spawnPoints = new List<GameTile>();
 
 	private int[] rotations = new int[] { 0, 90, 180, 270 };
 
@@ -75,7 +76,10 @@ public class GameTileManager : MonoBehaviour {
 			if (!foundTile.CheckSpawnPlacement (minSpaceBetweenSpawnpointsAndTransmitters, minSpaceBetweenSpawnpoints)) {
 				i -= 1;
 				continue;
-			} else { foundTile.SetSpawnTile (); }
+			} else {
+				foundTile.SetSpawnTile (); 
+				spawnPoints.Add (foundTile);
+			}
 		}
 
 	}

@@ -58,12 +58,13 @@ public class GameManager : MonoBehaviour {
 			}
 			WhoseTurnIsIt ().GetComponent<GameUnit> ().WakeUp ();
 			CameraMan.instance.SetTarget (WhoseTurnIsIt().transform);
-			GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (WhoseTurnIsIt ().transform.position);
+			MenuController.instance.GetRoundStart ().StartNewRound (WhoseTurnIsIt ().GetComponent<GameUnit> ());
+			GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (WhoseTurnIsIt ().GetComponent<GameUnit>());
 		}
 
 
 		GameUnit playerInControl = WhoseTurnIsIt ().GetComponent<GameUnit>();
-		cameraMoveText.GetComponent<Text>().text = playerInControl.GetMovesRemaining() + " / " + playerInControl.GetMaxMoves();
+		MenuController.instance.GetMovesCount ().UpdateMovesText (playerInControl);
 	}
 
 	void FixedUpdate() {
@@ -117,7 +118,8 @@ public class GameManager : MonoBehaviour {
 		playerInControl.RefreshMoves();
 		CameraMan.instance.SetTarget (WhoseTurnIsIt().transform);
 		playerInControl.WakeUp ();
-		GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (playerInControl.transform.position);
+		GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (playerInControl);
+		MenuController.instance.GetRoundStart ().StartNewRound (playerInControl);
 		yield return new WaitForSeconds(0.5f);
 
 		ControlHandler.instance.controlLock = false;

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance;
 	public static int playerTurn = 1;
 	 
+	[SerializeField] private Text textObj;
 	[SerializeField] private GameObject firePrefab;
 	[SerializeField] private GameObject cameraMoveText;
 	[SerializeField] private GameObject playerPrefab;
@@ -160,6 +161,8 @@ public class GameManager : MonoBehaviour {
 		//WIN
 		if (w >= 3) {
 			Debug.Log ("GAME OVER. PLAYERS WIN.");
+			textObj.gameObject.SetActive (true);
+			textObj.text = "GAME OVER. SURVIVORS WIN.";
 			foreach (GameObject p in playersInGame) {
 				p.GetComponent<Player>().Sleep ();
 			}
@@ -184,6 +187,8 @@ public class GameManager : MonoBehaviour {
 
 		if (deathCount >= 3) {
 			Debug.Log ("GAME OVER. BOSS WIN.");
+			textObj.gameObject.SetActive (true);
+			textObj.text = "GAME OVER. BOSS WIN.";
 			foreach (GameObject p in playersInGame) {
 				p.GetComponent<GameUnit>().Sleep ();
 			}

@@ -1,0 +1,260 @@
+fileFormatVersion: 2
+guid: 73768a7d8f527b9439f8a7bb06809abe
+timeCreated: 1517166246
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: BN_Chest
+    100002: BN_Head
+    100004: BN_L_Ankle
+    100006: BN_L_Clavicle
+    100008: BN_L_Elbow
+    100010: BN_L_Finger
+    100012: BN_L_FingerJoint
+    100014: BN_L_FingerTip
+    100016: BN_L_Foot
+    100018: BN_L_Hip
+    100020: BN_L_Knee
+    100022: BN_L_Palm
+    100024: BN_L_Shoulder
+    100026: BN_L_Thumb
+    100028: BN_L_ThumbJoint
+    100030: BN_L_ThumbTip
+    100032: BN_L_Toe
+    100034: BN_L_Wrist
+    100036: BN_Neck
+    100038: BN_R_Ankle
+    100040: BN_R_Clavicle
+    100042: BN_R_Elbow
+    100044: BN_R_Finger
+    100046: BN_R_FingerJoint
+    100048: BN_R_FingerTip
+    100050: BN_R_Foot
+    100052: BN_R_Hip
+    100054: BN_R_Knee
+    100056: BN_R_Palm
+    100058: BN_R_Shoulder
+    100060: BN_R_Thumb
+    100062: BN_R_ThumbJoint
+    100064: BN_R_ThumbTip
+    100066: BN_R_Toe
+    100068: BN_R_Wrist
+    100070: BN_Root
+    100072: BN_Stomach
+    100074: //RootNode
+    100076: CTRL_Chest
+    100078: CTRL_Hips
+    100080: CTRL_Master
+    100082: CTRL_Neck
+    100084: CTRL_Stomach
+    100086: group1
+    100088: Group10022
+    100090: Group10022_1
+    100092: Group10022_2
+    100094: Group10022_3
+    100096: Group10022_4
+    100098: locator3
+    100100: Null
+    100102: RetopoGroup1_1
+    100104: SpearHandle_low
+    100106: Spearhead_low
+    100108: UpGrip_Loc
+    100110: Volume4
+    100112: Volume4_1
+    100114: Volume4_2
+    100116: Volume4_3
+    100118: Volume4_4
+    100120: Volume4_5
+    100122: Volume4_6
+    400000: BN_Chest
+    400002: BN_Head
+    400004: BN_L_Ankle
+    400006: BN_L_Clavicle
+    400008: BN_L_Elbow
+    400010: BN_L_Finger
+    400012: BN_L_FingerJoint
+    400014: BN_L_FingerTip
+    400016: BN_L_Foot
+    400018: BN_L_Hip
+    400020: BN_L_Knee
+    400022: BN_L_Palm
+    400024: BN_L_Shoulder
+    400026: BN_L_Thumb
+    400028: BN_L_ThumbJoint
+    400030: BN_L_ThumbTip
+    400032: BN_L_Toe
+    400034: BN_L_Wrist
+    400036: BN_Neck
+    400038: BN_R_Ankle
+    400040: BN_R_Clavicle
+    400042: BN_R_Elbow
+    400044: BN_R_Finger
+    400046: BN_R_FingerJoint
+    400048: BN_R_FingerTip
+    400050: BN_R_Foot
+    400052: BN_R_Hip
+    400054: BN_R_Knee
+    400056: BN_R_Palm
+    400058: BN_R_Shoulder
+    400060: BN_R_Thumb
+    400062: BN_R_ThumbJoint
+    400064: BN_R_ThumbTip
+    400066: BN_R_Toe
+    400068: BN_R_Wrist
+    400070: BN_Root
+    400072: BN_Stomach
+    400074: //RootNode
+    400076: CTRL_Chest
+    400078: CTRL_Hips
+    400080: CTRL_Master
+    400082: CTRL_Neck
+    400084: CTRL_Stomach
+    400086: group1
+    400088: Group10022
+    400090: Group10022_1
+    400092: Group10022_2
+    400094: Group10022_3
+    400096: Group10022_4
+    400098: locator3
+    400100: Null
+    400102: RetopoGroup1_1
+    400104: SpearHandle_low
+    400106: Spearhead_low
+    400108: UpGrip_Loc
+    400110: Volume4
+    400112: Volume4_1
+    400114: Volume4_2
+    400116: Volume4_3
+    400118: Volume4_4
+    400120: Volume4_5
+    400122: Volume4_6
+    2100000: lambert1
+    2100002: lambert2
+    2100004: _Proxy meshdefault
+    2300000: Group10022
+    2300002: Group10022_1
+    2300004: Group10022_2
+    2300006: Group10022_3
+    2300008: Group10022_4
+    2300010: SpearHandle_low
+    2300012: Spearhead_low
+    2300014: Volume4
+    2300016: Volume4_1
+    2300018: Volume4_2
+    2300020: Volume4_3
+    2300022: Volume4_4
+    2300024: Volume4_5
+    2300026: Volume4_6
+    3300000: Group10022
+    3300002: Group10022_1
+    3300004: Group10022_2
+    3300006: Group10022_3
+    3300008: Group10022_4
+    3300010: SpearHandle_low
+    3300012: Spearhead_low
+    3300014: Volume4
+    3300016: Volume4_1
+    3300018: Volume4_2
+    3300020: Volume4_3
+    3300022: Volume4_4
+    3300024: Volume4_5
+    3300026: Volume4_6
+    4300000: Group10022_4
+    4300002: Group10022_3
+    4300004: Group10022_2
+    4300006: Group10022_1
+    4300008: Group10022
+    4300010: Volume4_6
+    4300012: Volume4_5
+    4300014: Volume4_4
+    4300016: Volume4_3
+    4300018: Volume4_2
+    4300020: Volume4_1
+    4300022: Volume4
+    4300024: RetopoGroup1_1
+    4300026: SpearHandle_low
+    4300028: Spearhead_low
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: RetopoGroup1_1
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

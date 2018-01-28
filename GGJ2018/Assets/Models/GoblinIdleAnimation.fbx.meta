@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: 29e1fea08f399ec46a4e1fff23bace3a
+timeCreated: 1517166245
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: BN_Chest
+    100002: BN_Head
+    100004: BN_L_Ankle
+    100006: BN_L_Clavicle
+    100008: BN_L_Elbow
+    100010: BN_L_Finger
+    100012: BN_L_FingerJoint
+    100014: BN_L_FingerTip
+    100016: BN_L_Foot
+    100018: BN_L_Hip
+    100020: BN_L_Knee
+    100022: BN_L_Palm
+    100024: BN_L_Shoulder
+    100026: BN_L_Thumb
+    100028: BN_L_ThumbJoint
+    100030: BN_L_ThumbTip
+    100032: BN_L_Toe
+    100034: BN_L_Wrist
+    100036: BN_Neck
+    100038: BN_R_Ankle
+    100040: BN_R_Clavicle
+    100042: BN_R_Elbow
+    100044: BN_R_Finger
+    100046: BN_R_FingerJoint
+    100048: BN_R_FingerTip
+    100050: BN_R_Foot
+    100052: BN_R_Hip
+    100054: BN_R_Knee
+    100056: BN_R_Palm
+    100058: BN_R_Shoulder
+    100060: BN_R_Thumb
+    100062: BN_R_ThumbJoint
+    100064: BN_R_ThumbTip
+    100066: BN_R_Toe
+    100068: BN_R_Wrist
+    100070: BN_Root
+    100072: BN_Sword
+    100074: BN_SwordTip
+    100076: Goblin_low
+    100078: GoblinDagger_low
+    100080: //RootNode
+    100082: loincloth_low
+    100084: SkeletonGRP
+    400000: BN_Chest
+    400002: BN_Head
+    400004: BN_L_Ankle
+    400006: BN_L_Clavicle
+    400008: BN_L_Elbow
+    400010: BN_L_Finger
+    400012: BN_L_FingerJoint
+    400014: BN_L_FingerTip
+    400016: BN_L_Foot
+    400018: BN_L_Hip
+    400020: BN_L_Knee
+    400022: BN_L_Palm
+    400024: BN_L_Shoulder
+    400026: BN_L_Thumb
+    400028: BN_L_ThumbJoint
+    400030: BN_L_ThumbTip
+    400032: BN_L_Toe
+    400034: BN_L_Wrist
+    400036: BN_Neck
+    400038: BN_R_Ankle
+    400040: BN_R_Clavicle
+    400042: BN_R_Elbow
+    400044: BN_R_Finger
+    400046: BN_R_FingerJoint
+    400048: BN_R_FingerTip
+    400050: BN_R_Foot
+    400052: BN_R_Hip
+    400054: BN_R_Knee
+    400056: BN_R_Palm
+    400058: BN_R_Shoulder
+    400060: BN_R_Thumb
+    400062: BN_R_ThumbJoint
+    400064: BN_R_ThumbTip
+    400066: BN_R_Toe
+    400068: BN_R_Wrist
+    400070: BN_Root
+    400072: BN_Sword
+    400074: BN_SwordTip
+    400076: Goblin_low
+    400078: GoblinDagger_low
+    400080: //RootNode
+    400082: loincloth_low
+    400084: SkeletonGRP
+    2100000: _Goblin_LP_v002_UNWRAPEDWITHLOINCLOTHdefault
+    2100002: _Proxy meshdefault1
+    4300000: Goblin_low
+    4300002: loincloth_low
+    4300004: GoblinDagger_low
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Goblin_low
+    13700002: GoblinDagger_low
+    13700004: loincloth_low
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

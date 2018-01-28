@@ -51,10 +51,9 @@ public class ControlHandler : MonoBehaviour {
 			if (GameManager.instance.WhoseTurnIsIt ().GetComponent<Player> ()) {
 				if (Input.GetKey (KeyCode.E)) {
 					CameraMan.instance.cameraMode = CameraMan.CameraModes.Full;
-				} else {
+				} else if (Input.GetKeyUp (KeyCode.E)) {
 					CameraMan.instance.cameraMode = CameraMan.CameraModes.Follow;
 				}
-					
 			}
 		}
 	}

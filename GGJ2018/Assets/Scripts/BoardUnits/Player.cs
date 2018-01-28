@@ -44,16 +44,24 @@ public class Player : GameUnit {
 
 			//ONE TIME CHECK FOR TRANSMITTERS NEARBY
 			if(movesRemaining > 0){
-				if (currentNode.me.tiles [(int)GameTile.Direction.Up] != null && currentNode.me.tiles [(int)GameTile.Direction.Up].type == GameTile.TileType.Transmitter) {
+				if (currentNode.me.tiles [(int)GameTile.Direction.Up] != null 
+					&& currentNode.me.tiles [(int)GameTile.Direction.Up].type == GameTile.TileType.Transmitter
+					&& !GameManager.instance.IsThisGIANTBURNINGBONFIREon(currentNode.me.tiles [(int)GameTile.Direction.Up])) {
 					GameManager.instance.ActivateTransmitter (currentNode.me.tiles [(int)GameTile.Direction.Up]);
 					movesRemaining--;
-				} else if (currentNode.me.tiles [(int)GameTile.Direction.Right] != null && currentNode.me.tiles [(int)GameTile.Direction.Right].type == GameTile.TileType.Transmitter) {
+				} else if (currentNode.me.tiles [(int)GameTile.Direction.Right] != null 
+					&& currentNode.me.tiles [(int)GameTile.Direction.Right].type == GameTile.TileType.Transmitter
+					&& !GameManager.instance.IsThisGIANTBURNINGBONFIREon(currentNode.me.tiles [(int)GameTile.Direction.Right])) {
 					GameManager.instance.ActivateTransmitter (currentNode.me.tiles [(int)GameTile.Direction.Right]);
 					movesRemaining--;
-				} else if (currentNode.me.tiles [(int)GameTile.Direction.Down] != null && currentNode.me.tiles [(int)GameTile.Direction.Down].type == GameTile.TileType.Transmitter) {
+				} else if (currentNode.me.tiles [(int)GameTile.Direction.Down] != null 
+					&& currentNode.me.tiles [(int)GameTile.Direction.Down].type == GameTile.TileType.Transmitter
+					&& !GameManager.instance.IsThisGIANTBURNINGBONFIREon(currentNode.me.tiles [(int)GameTile.Direction.Down])) {
 					GameManager.instance.ActivateTransmitter (currentNode.me.tiles [(int)GameTile.Direction.Down]);
 					movesRemaining--;
-				} else if (currentNode.me.tiles [(int)GameTile.Direction.Left] != null && currentNode.me.tiles [(int)GameTile.Direction.Left].type == GameTile.TileType.Transmitter) {
+				} else if (currentNode.me.tiles [(int)GameTile.Direction.Left] != null 
+					&& currentNode.me.tiles [(int)GameTile.Direction.Left].type == GameTile.TileType.Transmitter
+					&& !GameManager.instance.IsThisGIANTBURNINGBONFIREon(currentNode.me.tiles [(int)GameTile.Direction.Left])) {
 					GameManager.instance.ActivateTransmitter (currentNode.me.tiles [(int)GameTile.Direction.Left]);
 					movesRemaining--;
 				}
@@ -144,11 +152,11 @@ public class Player : GameUnit {
 		if (pathing.Count >= 1){
 			transform.position = Vector3.Lerp (transform.position, pathing[pathing.Count-1].transform.position + (pathing[pathing.Count-1].transform.position - transform.position).normalized*1.3f, Time.deltaTime * tileTransitionSpeed);
 			Debug.DrawRay (transform.position, Vector3.up * 5, Color.yellow, 1.0f);
-			GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (transform.position);
+			GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (this);
 			travelling = true;
 			ControlHandler.instance.controlLock = true;
 			if (GameManager.instance.WhoseTurnIsIt () == gameObject) {
-				GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (transform.position);
+				GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (this);
 			}
 			if (Vector3.Distance (transform.position, pathing[pathing.Count-1].transform.position) < tileSnapDistance) {
 				transform.position = pathing[pathing.Count-1].transform.position;
@@ -183,8 +191,14 @@ public class Player : GameUnit {
 		if (haveWisp) {
 			GameObject wispy = Instantiate (wispPrefab, transform.position, Quaternion.identity);
 			wispy.GetComponent<Wisp> ().Prime (this.gameObject, gt);
+			GameManager.instance.AddWispToGame (wispy);
+			haveWisp = false;
 		}
 
 		return;
+	}
+
+	public void WispReturn (GameObject wispy){
+		haveWisp = true;
 	}
 }

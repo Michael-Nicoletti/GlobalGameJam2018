@@ -127,12 +127,13 @@ public class GameTileManager : MonoBehaviour {
 		return rotations [Random.Range (0, rotations.Length)];
 	}
 
-	public void UpdateActiveListBasedOnPlayerPosition(Vector3 playerPos) {
+	public void UpdateActiveListBasedOnPlayerPosition(GameUnit inUnit) {
+		Vector3 usePos = inUnit.transform.position;
 		List<GameTile> newList = new List<GameTile> ();
 		foreach (GameTile tile in activeTiles) {
-			tile.inRange = false;
+			tile.SetInRange(false, inUnit);
 		}
-		GameTile checkTile = GetTileFromPos(new Vector3(RoundToNearestFive(Mathf.RoundToInt(playerPos.x)), 0, RoundToNearestFive(Mathf.RoundToInt(playerPos.z))));
+		GameTile checkTile = GetTileFromPos(new Vector3(RoundToNearestFive(Mathf.RoundToInt(usePos.x)), 0, RoundToNearestFive(Mathf.RoundToInt(usePos.z))));
 		if (checkTile != null) {
 			newList.Add (checkTile);
 			for (int i = 0; i < checkTile.tiles.Length; i++) {
@@ -156,7 +157,7 @@ public class GameTileManager : MonoBehaviour {
 			}
 		}
 		foreach (GameTile tile in activeTiles) {
-			tile.inRange = true;
+			tile.SetInRange(true, inUnit);
 		}
 	}
 

@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour {
 	private bool spawnPlayers = true;
 
 	List<GameObject> minionsInGame = new List<GameObject>();
+	List<GameObject> wispsInGame = new List<GameObject> ();
 
 	void Awake() {
 		instance = this;
@@ -97,8 +98,21 @@ public class GameManager : MonoBehaviour {
 				Minion minion = minionsInGame [i].GetComponent<Minion>();
 				minion.Sleep ();
 			}
-			CameraMan.instance.ChangeCameraModes (CameraMan.CameraModes.Follow);
 		}
+		if (wispsInGame.Count > 0) {
+			CameraMan.instance.ChangeCameraModes (CameraMan.CameraModes.Full);
+			yield return new WaitForSeconds (1f);
+			Debug.Log ("Special Wisp Turn! Wisp Count: " + wispsInGame.Count);
+			for (int i = 0; i < wispsInGame.Count; i++) {
+				Wisp wisp = wispsInGame [i].GetComponent<Wisp>();
+				wisp.WakeUp ();
+				wisp.RefreshMoves ();
+				wisp.ScoutOrReturn ();
+				yield return new WaitForSeconds (1f);
+			}
+			yield return new WaitForSeconds (2);
+		}
+		CameraMan.instance.ChangeCameraModes (CameraMan.CameraModes.Follow);
 
 		playerTurn++;
 
@@ -148,6 +162,15 @@ public class GameManager : MonoBehaviour {
 		return;
 	}
 
+	public bool IsThisGIANTBURNINGBONFIREon(GameTile t){
+		for (int i = 0; i < 3; i++) {
+			if (transmitters [i].transmitterTile == t)
+				return transmitters [i].active;
+		}
+		Debug.LogWarning (t.name + " is not a transmitter tile you dingus!");
+		return false;
+	}
+
 	public void CheckIfAllDead(){
 		int deathCount = 0;
 		for (int i = 0; i < playersInGame.Count; i++) {
@@ -176,5 +199,13 @@ public class GameManager : MonoBehaviour {
 
 	public void RemoveMinionFromList(GameObject m){
 		minionsInGame.Remove(m);
+	}
+
+	public void AddWispToGame(GameObject w){
+		wispsInGame.Add (w);
+	}
+
+	public void RemoveWispFromList(GameObject w){
+		wispsInGame.Remove (w);
 	}
 }

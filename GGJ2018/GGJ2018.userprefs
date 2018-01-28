@@ -2,13 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BoardUnits\Wisp.cs">
     <Files>
-      <File FileName="Assets\Scripts\Game\ControlHandler.cs" Line="29" Column="95" />
-      <File FileName="Assets\Scripts\Game\CameraMan.cs" Line="74" Column="3" />
-      <File FileName="Assets\Scripts\Game\GameManager.cs" Line="60" Column="13" />
-      <File FileName="Assets\Scripts\BoardUnits\Player.cs" Line="185" Column="1" />
-      <File FileName="Assets\Scripts\BoardUnits\Wisp.cs" Line="13" Column="14" />
+      <File FileName="Assets\Scripts\Game\ControlHandler.cs" Line="93" Column="1" />
+      <File FileName="Assets\Scripts\Game\CameraMan.cs" Line="33" Column="27" />
+      <File FileName="Assets\Scripts\Game\GameManager.cs" Line="183" Column="32" />
+      <File FileName="Assets\Scripts\BoardUnits\Player.cs" Line="201" Column="19" />
+      <File FileName="Assets\Scripts\BoardUnits\Wisp.cs" Line="148" Column="63" />
       <File FileName="Assets\Scripts\BoardUnits\Minion.cs" Line="18" Column="4" />
-      <File FileName="Assets\Scripts\BoardUnits\GameUnit.cs" Line="173" Column="3" />
+      <File FileName="Assets\Scripts\BoardUnits\GameUnit.cs" Line="206" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -111,12 +111,12 @@ public class GameUnit : MonoBehaviour {
 
 				//If we found no better nodes, then abort, we're stuck.
 				if (currentNode.me == null) {
-					Debug.Log ("We're dead Jim! (No paths found.)");
+					//Debug.Log ("We're dead Jim! (No paths found.)");
 					pathExists = false;
 					break;
 					//If the node is the goal, we're good to go.
 				} else if (currentNode.me.transform.position == target) {
-					Debug.Log ("Found it! (Path Route Found)");
+					//Debug.Log ("Found it! (Path Route Found)");
 					keepSearching = false;
 					break;
 				} 

@@ -9,8 +9,7 @@ Assets/ShaderForge/*
 Assets/Examples/*
 Assets/Standard Assets/*
 Assets/Local/*
-SwitchIL2CPPCache/*
-SwitchIL2CPPStats/*
+
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
@@ -50,3 +49,5 @@ Assets/Local.meta
 Assets/StandardAssets.meta
 Assets/Materials/LightingPresets/Test/*
 Assets/Materials/LightingPresets/Test.meta
+GGJ2018/Library/
+GGJ2018/

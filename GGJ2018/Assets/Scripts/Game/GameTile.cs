@@ -128,7 +128,7 @@ public class GameTile : MonoBehaviour {
 
 	public void UpdateAnim() {
 		if (anim != null) {
-			//anim.SetBool ("active", );
+			anim.SetBool ("active", inRange);
 		}
 	}
 

@@ -35,6 +35,7 @@ public class GameUnit : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (transform.position);
 	}
 	
 	// Update is called once per frame
@@ -133,6 +134,8 @@ public class GameUnit : MonoBehaviour {
 
 		if (pathing.Count >= 1){
 			transform.position = Vector3.Lerp (transform.position, pathing[pathing.Count-1].transform.position + (pathing[pathing.Count-1].transform.position - transform.position).normalized*1.3f, Time.deltaTime * tileTransitionSpeed);
+			Debug.DrawRay (transform.position, Vector3.up * 5, Color.yellow, 1.0f);
+			GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (transform.position);
 			if (Vector3.Distance (transform.position, pathing[pathing.Count-1].transform.position) < tileSnapDistance) {
 				transform.position = pathing[pathing.Count-1].transform.position;
 				pathing.RemoveAt (pathing.Count-1);

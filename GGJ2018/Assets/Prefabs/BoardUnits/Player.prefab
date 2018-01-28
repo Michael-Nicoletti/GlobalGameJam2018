@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveMarkerPrefab: {fileID: 1808207224108862, guid: 23b101a5b0bdd6043810cc1ee0f94a2b,
     type: 2}
-  maxMoves: 2
+  maxMoves: 1000
   tileTransitionSpeed: 2
 --- !u!136 &136062678310699412
 CapsuleCollider:

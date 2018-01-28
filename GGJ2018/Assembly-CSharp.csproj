@@ -107,6 +107,9 @@
      <Compile Include="Assets\Scripts\Game\GameManager.cs" />
      <Compile Include="Assets\Scripts\Game\GameTile.cs" />
      <Compile Include="Assets\Scripts\Game\GameTileManager.cs" />
+     <Compile Include="Assets\Scripts\UI\MenuController.cs" />
+     <Compile Include="Assets\Scripts\UI\MenuMovesCount.cs" />
+     <Compile Include="Assets\Scripts\UI\MenuRoundStart.cs" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />

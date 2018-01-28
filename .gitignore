@@ -4,7 +4,8 @@ Library/
 obj/
 *.svd
 *.csproj
-
+*.meta
+/GGJ2018/Library/metadata/
 !Library/*.asset
 !Library/AssetImportState
 !Library/AssetVersioning.db

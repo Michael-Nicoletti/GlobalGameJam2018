@@ -5,7 +5,7 @@
       <File FileName="Assets\Scripts\Game\ControlHandler.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Game\CameraMan.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Game\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BoardUnits\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BoardUnits\Player.cs" Line="189" Column="41" />
       <File FileName="Assets\Scripts\BoardUnits\Wisp.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\BoardUnits\Minion.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\BoardUnits\GameUnit.cs" Line="1" Column="1" />

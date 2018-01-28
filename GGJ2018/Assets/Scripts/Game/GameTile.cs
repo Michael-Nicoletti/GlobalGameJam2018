@@ -197,4 +197,12 @@ public class GameTile : MonoBehaviour {
 		type = TileType.SpawnTile;
 		Debug.DrawRay (transform.position, Vector3.up * 10, Color.magenta, 10.0f);
 	}
+
+	public void SetInRange(bool newInRange, GameUnit calledBy) {
+		if (!(calledBy is Minion)) {
+			inRange = newInRange;
+		} else if (calledBy is Minion) {
+			inRange = false;
+		}
+	}
 }

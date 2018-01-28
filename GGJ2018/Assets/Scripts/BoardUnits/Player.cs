@@ -13,6 +13,12 @@ public class Player : GameUnit {
 	int arrowSupply;
 	bool haveWisp = true;
 
+	Animator animController;
+
+	void Awake(){
+		animController = GetComponent<Animator> ();
+	}
+
 	protected override void Start () {
 		base.Start ();
 		RefreshArrows ();
@@ -154,6 +160,7 @@ public class Player : GameUnit {
 			Debug.DrawRay (transform.position, Vector3.up * 5, Color.yellow, 1.0f);
 			GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (transform.position);
 			travelling = true;
+			animController.SetTrigger ("Run");
 			ControlHandler.instance.controlLock = true;
 			if (GameManager.instance.WhoseTurnIsIt () == gameObject) {
 				GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (transform.position);
@@ -163,6 +170,7 @@ public class Player : GameUnit {
 				pathing.RemoveAt (pathing.Count-1);
 				movesRemaining--;
 				travelling = false;
+				animController.SetTrigger ("Idle");
 				ControlHandler.instance.controlLock = false;
 			}
 
@@ -178,6 +186,7 @@ public class Player : GameUnit {
 
 	protected void TryAttackMove(Vector3 dir){
 		if (arrowSupply > 0) {
+			animController.SetTrigger ("Attack");
 			Instantiate (arrowPrefab, transform.position + Vector3.up, Quaternion.LookRotation(dir)).GetComponent<Arrow>().Prime(arrowSpeed, dir);
 			arrowSupply--;
 		}

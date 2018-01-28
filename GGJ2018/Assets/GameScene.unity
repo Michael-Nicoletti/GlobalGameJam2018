@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de45f85d046f32b4ab65279fb08d5b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePrefab: {fileID: 0}
   cameraMoveText: {fileID: 0}
   playerPrefab: {fileID: 1506532076595474, guid: 371e6bd289a977b4c9431c01854af0e0,
     type: 2}
@@ -501,7 +502,7 @@ Prefab:
     - target: {fileID: 224558291772724252, guid: 63acb33d9c48d1a48803cf34d8f448d3,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224558291772724252, guid: 63acb33d9c48d1a48803cf34d8f448d3,
         type: 2}
@@ -1398,7 +1399,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &138020781
 Prefab:

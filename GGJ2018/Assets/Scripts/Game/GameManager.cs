@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance;
 	public static int playerTurn = 1;
 	 
+	[SerializeField] private GameObject firePrefab;
 	[SerializeField] private GameObject cameraMoveText;
 	[SerializeField] private GameObject playerPrefab;
 	[SerializeField] private GameObject bossPrefab;
@@ -145,7 +146,9 @@ public class GameManager : MonoBehaviour {
 		for (int i = 0; i < 3; i++) {
 			if (transmitters[i].transmitterTile == t)
 				transmitters[i].active = true;
-			
+
+			Instantiate (firePrefab, transmitters [i].transmitterTile.transform.position + Vector3.up * 4, Quaternion.identity);
+
 			if (transmitters [i].active) {
 				w++;
 				Debug.DrawRay (transmitters [i].transmitterTile.transform.position, Vector3.up * 100f, Color.white, 5f);

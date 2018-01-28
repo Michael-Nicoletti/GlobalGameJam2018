@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114156836287252454}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveMarkerPrefab: {fileID: 1808207224108862, guid: 23b101a5b0bdd6043810cc1ee0f94a2b,
     type: 2}
+  maxMoves: 2
+  tileTransitionSpeed: 2
 --- !u!136 &136062678310699412
 CapsuleCollider:
   m_ObjectHideFlags: 1

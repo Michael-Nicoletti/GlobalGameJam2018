@@ -1,9 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BoardUnits\GameUnit.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\GameManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\BoardUnits\GameUnit.cs" Line="27" Column="38" />
-      <File FileName="Assets\Scripts\BoardUnits\Player.cs" Line="11" Column="60" />
+      <File FileName="Assets\Scripts\Game\ControlHandler.cs" Line="6" Column="2" />
+      <File FileName="Assets\Scripts\BoardUnits\Player.cs" Line="23" Column="3" />
+      <File FileName="Assets\Scripts\BoardUnits\GameUnit.cs" Line="170" Column="18" />
+      <File FileName="Assets\Scripts\Game\GameManager.cs" Line="30" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

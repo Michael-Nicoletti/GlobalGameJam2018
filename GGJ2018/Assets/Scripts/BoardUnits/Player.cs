@@ -8,14 +8,17 @@ public class Player : GameUnit {
 
 	// Use this for initialization
 	void Start () {
-		pathfindFromTo (transform.position, new Vector3 (0, 0, 25));
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	}
 
-	void FixedUpdate(){
+	protected override void FixedUpdate(){
 		base.FixedUpdate ();
+	}
+
+	public void TryMovement(GameObject target){
+		pathfindFromTo (transform.position, target.transform.position);
 	}
 }

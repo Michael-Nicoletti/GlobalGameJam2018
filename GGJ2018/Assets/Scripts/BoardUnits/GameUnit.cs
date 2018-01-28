@@ -20,13 +20,18 @@ class Node{
 public class GameUnit : MonoBehaviour {
 
 	[SerializeField]GameObject moveMarkerPrefab;
-	[SerializeField]int moveEnergy = 2;
+	[SerializeField]int maxMoves = 2;
 	[SerializeField]int tileTransitionSpeed = 1;
 
 	protected int movesRemaining = 2;
-	protected float tileSnapDistance = 1f;
+	protected float tileSnapDistance = 0.1f;
+	protected TextMesh movesRemainingUI;
 
 	List<GameTile> pathing = new List<GameTile>();
+
+	void Awake() {
+		movesRemainingUI = CameraMan.instance.GetComponent (typeof(TextMesh)) as TextMesh;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -34,24 +39,24 @@ public class GameUnit : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected virtual void FixedUpdate () {
-		TravelAlongTiles (pathing);
+		TravelAlongTiles ();
+
 	}
 
 	//HOW TO USE PATHFINDING
 	//Run "pathfindFromTo," and feed in the start and target tiles by their vector.
 	//The unit will automatically attempt to travel along those tiles.
 	//Modify units snapping to tiles via "tileSnapDistance
-	//protected List<GameTile> pathfindFromTo(Vector3 start, Vector3 target)
 	protected void pathfindFromTo(Vector3 start, Vector3 target)
 	{
-		if (start == target) return;
+		if (start == target || GameTileManager.instance.GetTileFromPos(RoundVectorToFives(target)).type == GameTile.TileType.Impassible ) return;
 		List <Node> foundNodes = new List<Node>();
 		List <Node> closedNodes = new List<Node>();
 		bool keepSearching = true;
 		bool pathExists = true;
 		Node currentNode;
 
-		foundNodes.Add(new Node(GameTileManager.instance.GetTileFromPos (RoundVectorToThrees(transform.position)), null));
+		foundNodes.Add(new Node(GameTileManager.instance.GetTileFromPos (RoundVectorToFives(transform.position)), null));
 		currentNode = foundNodes [0];
 
 		//Check all tiles that are neighbouring the one the player is currently on. 
@@ -120,17 +125,28 @@ public class GameUnit : MonoBehaviour {
 		pathing = finalPath;
 	}
 
-	//Travel along the tiles set in pathfindFromTo.
-	void TravelAlongTiles(List<GameTile> p){
-		Debug.DrawRay (p[p.Count-1].transform.position, Vector3.up * 8f, Color.white);
-		if (pathing[p.Count-1] != null){
-			transform.position = Vector3.Lerp (transform.position, p[p.Count-1].transform.position, Time.deltaTime * tileTransitionSpeed);
-			if (Vector3.Distance (transform.position, p[p.Count-1].transform.position) < tileSnapDistance) {
-				transform.position = p[p.Count-1].transform.position;
-				p.RemoveAt (p.Count-1);
+	//Travel along the tiles set in pathfindFromTo, EXPENDS GAME UNIT ENERGY.
+	void TravelAlongTiles(){
+		if (movesRemaining == 0) {
+			pathing.Clear();
+		}
+
+		if (pathing.Count >= 1){
+			transform.position = Vector3.Lerp (transform.position, pathing[pathing.Count-1].transform.position + (pathing[pathing.Count-1].transform.position - transform.position).normalized*1.3f, Time.deltaTime * tileTransitionSpeed);
+			if (Vector3.Distance (transform.position, pathing[pathing.Count-1].transform.position) < tileSnapDistance) {
+				transform.position = pathing[pathing.Count-1].transform.position;
+				pathing.RemoveAt (pathing.Count-1);
+				movesRemaining--;
 			}
+
+			if (pathing.Count >= 1) Debug.DrawRay (pathing[pathing.Count-1].transform.position, Vector3.up * 8f, Color.white);
 		}
 	}
+
+	public void RefreshMoves(){
+		movesRemaining = maxMoves;
+	}
+
 
 	bool DoesNodeListContainGameTile(GameTile GT, List<Node> cl){
 		foreach (Node n in cl) {
@@ -142,7 +158,15 @@ public class GameUnit : MonoBehaviour {
 	}
 
 	//Rounds all vector numbers to multiples of three.
-	Vector3 RoundVectorToThrees(Vector3 n) {
-		return new Vector3 ( Mathf.Round (transform.position.x) / 5 * 5, Mathf.Round (transform.position.y) / 5 * 5, Mathf.Round (transform.position.z) / 5 * 5);
+	Vector3 RoundVectorToFives(Vector3 n) {
+		return new Vector3 ( Mathf.Round (n.x) / 5 * 5, Mathf.Round (n.y) / 5 * 5, Mathf.Round (n.z) / 5 * 5);
+	}
+
+	public int GetMovesRemaining(){
+		return movesRemaining;
+	}
+
+	public int GetMaxMoves(){
+		return maxMoves;
 	}
 }

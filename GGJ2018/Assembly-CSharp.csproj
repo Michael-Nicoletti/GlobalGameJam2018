@@ -54,10 +54,10 @@
      <Compile Include="Assets\Scripts\BoardUnits\GameUnit.cs" />
      <Compile Include="Assets\Scripts\BoardUnits\Player.cs" />
      <Compile Include="Assets\Scripts\Game\CameraMan.cs" />
+     <Compile Include="Assets\Scripts\Game\ControlHandler.cs" />
      <Compile Include="Assets\Scripts\Game\GameManager.cs" />
      <Compile Include="Assets\Scripts\Game\GameTile.cs" />
      <Compile Include="Assets\Scripts\Game\GameTileManager.cs" />
-     <Compile Include="Assets\Scripts\Game\MouseHandler.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

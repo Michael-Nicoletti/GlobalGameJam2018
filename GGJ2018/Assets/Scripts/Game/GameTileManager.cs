@@ -28,7 +28,7 @@ public class GameTileManager : MonoBehaviour {
 	private int[] rotations = new int[] { 0, 90, 180, 270 };
 
 	private List<GameTile> activeTiles = new List<GameTile>();
-
+	private bool initialized = false;
 
 	void Awake() {
 		instance = this;
@@ -84,7 +84,7 @@ public class GameTileManager : MonoBehaviour {
 				spawnPoints.Add (foundTile);
 			}
 		}
-
+		initialized = true;
 	}
 
 	public GameTile GetTileFromPos(Vector3 pos) {
@@ -131,13 +131,26 @@ public class GameTileManager : MonoBehaviour {
 		GameTile checkTile = GetTileFromPos(new Vector3(RoundToNearestFive(Mathf.RoundToInt(playerPos.x)), 0, RoundToNearestFive(Mathf.RoundToInt(playerPos.z))));
 		if (checkTile != null) {
 			newList.Add (checkTile);
+			Debug.DrawRay (checkTile.transform.position, Vector3.up * 10, Color.blue, 10.0f);
 			for (int i = 0; i < checkTile.tiles.Length; i++) {
-				newList.Add (checkTile.tiles [i]);
+				GameTile addTile = checkTile.tiles [i];
+				if (addTile != null) {
+					newList.Add (addTile);
+					Debug.DrawRay (addTile.transform.position, Vector3.up * 10, Color.blue, 10.0f);
+					for (int j = 0; j < addTile.tiles.Length; j++) {
+						if (addTile.tiles [j] != null && !newList.Contains (addTile.tiles [j])) {
+							Debug.DrawRay (addTile.tiles[j].transform.position, Vector3.up * 10, Color.blue, 10.0f);
+							newList.Add(addTile.tiles[j]);
+						}
+					}
+				}
 			}
 		}
+
 		for (int i = 0; i < activeTiles.Count; i++) {
+			Debug.DrawRay (activeTiles [i].transform.position, Vector3.up * 10, Color.black, 10.0f);	
 			if(!newList.Contains(activeTiles[i])) {
-				activeTiles.RemoveAt (i);
+				activeTiles.Remove(activeTiles[i]);
 			}
 		}
 
@@ -148,7 +161,8 @@ public class GameTileManager : MonoBehaviour {
 		}
 		foreach (GameTile tile in activeTiles) {
 			tile.inRange = true;
-
 		}
 	}
+
+	public bool GetInit() { return initialized; }
 }

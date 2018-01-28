@@ -209,6 +209,7 @@ MonoBehaviour:
   cameraMoveText: {fileID: 1243494439}
   playerPrefab: {fileID: 1506532076595474, guid: 371e6bd289a977b4c9431c01854af0e0,
     type: 2}
+  bossPrefab: {fileID: 1314308632736168, guid: 8c100f2f2fb5920418c8f84220acbcde, type: 2}
   tileObjectTest: {fileID: 0}
 --- !u!4 &12211447
 Transform:
@@ -5961,6 +5962,7 @@ MonoBehaviour:
   minSpaceBetweenSpawnpoints: 10
   minSpaceBetweenSpawnpointsAndTransmitters: 5
   spawnPoints: []
+  transmitterPoints: []
 --- !u!4 &802862865
 Transform:
   m_ObjectHideFlags: 0
@@ -14828,6 +14830,11 @@ Prefab:
     - target: {fileID: 4936100010804872, guid: 6a7e58f9001294544bc4e9c25f9d9423, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114909887471512422, guid: 6a7e58f9001294544bc4e9c25f9d9423,
+        type: 2}
+      propertyPath: CameraSpeed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a7e58f9001294544bc4e9c25f9d9423, type: 2}

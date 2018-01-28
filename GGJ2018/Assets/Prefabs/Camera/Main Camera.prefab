@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraOffset: {x: -5, y: 11, z: -9}
-  CameraSpeed: 1
+  CameraSpeed: 3
 --- !u!124 &124009345859003470
 Behaviour:
   m_ObjectHideFlags: 1

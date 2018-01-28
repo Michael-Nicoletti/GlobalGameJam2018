@@ -1,12 +1,15 @@
 fileFormatVersion: 2
 guid: de45f85d046f32b4ab65279fb08d5b9e
-timeCreated: 1517104905
+timeCreated: 1517125542
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - cameraMoveText: {instanceID: 0}
   - playerPrefab: {fileID: 1506532076595474, guid: 371e6bd289a977b4c9431c01854af0e0,
+      type: 2}
+  - bossPrefab: {fileID: 1314308632736168, guid: 8c100f2f2fb5920418c8f84220acbcde,
       type: 2}
   - tileObjectTest: {instanceID: 0}
   executionOrder: 0

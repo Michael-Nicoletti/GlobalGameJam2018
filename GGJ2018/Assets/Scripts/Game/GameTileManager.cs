@@ -24,6 +24,7 @@ public class GameTileManager : MonoBehaviour {
 	public int minSpaceBetweenSpawnpoints = 10;
 	public int minSpaceBetweenSpawnpointsAndTransmitters = 5;
 	public List<GameTile> spawnPoints = new List<GameTile>();
+	public List<GameTile> transmitterPoints = new List<GameTile>();
 
 	private int[] rotations = new int[] { 0, 90, 180, 270 };
 
@@ -54,7 +55,7 @@ public class GameTileManager : MonoBehaviour {
 					foundTile.SetImpassible ();
 				}
 			} else {
-				Debug.Log ("We didnt find anything "+checkCoordinates);
+				Debug.Log ("We didnt find anything "+ checkCoordinates);
 			}
 		}
 
@@ -67,7 +68,10 @@ public class GameTileManager : MonoBehaviour {
 			if (!foundTile.CheckTransmitterPlacement (minSpaceBetweenTransmitters)) {
 				i -= 1;
 				continue;
-			} else { foundTile.SetTransmitter(); }
+			} else { 
+				foundTile.SetTransmitter(); 
+				transmitterPoints.Add (foundTile);
+			}
 		}
 
 		for (int i = 0; i < 4; i++) {

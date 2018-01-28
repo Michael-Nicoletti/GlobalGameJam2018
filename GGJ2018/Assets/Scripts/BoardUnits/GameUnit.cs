@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class GameUnit : MonoBehaviour {
 
-	[SerializeField]GameObject moveMarkerPrefab;
 	[SerializeField]int maxMoves = 2;
-	[SerializeField]int tileTransitionSpeed = 1;
+	[SerializeField]int tileTransitionSpeed = 3;
 
-	protected int movesRemaining = 2;
+	protected int health = 2;
+	protected int movesRemaining = 0;
 	protected float tileSnapDistance = 0.1f;
 	protected bool asleep = true;
 	protected bool travelling = false;
+	protected bool alive = true;
 
 	protected List<GameTile> pathing = new List<GameTile>();
 
@@ -30,13 +31,14 @@ public class GameUnit : MonoBehaviour {
 		}
 	}
 
-	void Awake() {
+	protected virtual void Awake() {
 		
 	}
 
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 		//GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (transform.position);
+		RefreshMoves ();
 	}
 	
 	// Update is called once per frame
@@ -146,7 +148,7 @@ public class GameUnit : MonoBehaviour {
 	}
 
 	//Travel along the tiles set in pathfindFromTo, EXPENDS GAME UNIT ENERGY.
-	void TravelAlongTiles(){
+	protected virtual void TravelAlongTiles(){
 		if (movesRemaining == 0) {
 			pathing.Clear();
 		}
@@ -203,5 +205,18 @@ public class GameUnit : MonoBehaviour {
 
 	public void Sleep(){
 		asleep = true;
+	}
+
+	public bool isAlive(){
+		return alive;
+	}
+
+	protected virtual void Kill(){
+		alive = false;
+	}
+
+	protected void Damage(){
+		health--;
+		if (health <= 0) Kill ();
 	}
 }

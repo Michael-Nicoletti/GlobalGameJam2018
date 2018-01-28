@@ -14,16 +14,8 @@ public class Player : GameUnit {
 		pathfindFromTo (transform.position, target.transform.position);
 	}
 
-	public void TryActivate(GameObject target){
-		
-	}
-
-	public void ActivateTransmitter() {
-		//GameTileManager.instance.GetTileFromPos (RoundVectorToFives(transform.position)).tiles;
-	}
-
 	//An Unsafe Pathfind specifically for transmitters.
-	protected void tryActivateTransmitter(Vector3 target)
+	void TryActivateTransmitter(Vector3 target)
 	{
 		//GAME UNITS WILL NOT PATHFIND WHILE ASLEEP (also because this function is special: THE TARGET MUST BE A TRANSMITTER.)
 		if (!asleep && !travelling && GameTileManager.instance.GetTileFromPos(target).type == GameTile.TileType.Transmitter) {
@@ -39,19 +31,21 @@ public class Player : GameUnit {
 			currentNode = foundNodes [0];
 
 			//ONE TIME CHECK FOR TRANSMITTERS NEARBY
-			/*
-			if (currentNode.me.tiles [(int)GameTile.Direction.Up] != null && currentNode.me.tiles [(int)GameTile.Direction.Up].type == GameTile.TileType.Transmitter) {
-				foundNodes.Add (new Node (currentNode.me.tiles [(int)GameTile.Direction.Up], currentNode));
+			if(movesRemaining > 0){
+				if (currentNode.me.tiles [(int)GameTile.Direction.Up] != null && currentNode.me.tiles [(int)GameTile.Direction.Up].type == GameTile.TileType.Transmitter) {
+					GameManager.instance.ActivateTransmitter (currentNode.me.tiles [(int)GameTile.Direction.Up]);
+					movesRemaining--;
+				} else if (currentNode.me.tiles [(int)GameTile.Direction.Right] != null && currentNode.me.tiles [(int)GameTile.Direction.Right].type == GameTile.TileType.Transmitter) {
+					GameManager.instance.ActivateTransmitter (currentNode.me.tiles [(int)GameTile.Direction.Right]);
+					movesRemaining--;
+				} else if (currentNode.me.tiles [(int)GameTile.Direction.Down] != null && currentNode.me.tiles [(int)GameTile.Direction.Down].type == GameTile.TileType.Transmitter) {
+					GameManager.instance.ActivateTransmitter (currentNode.me.tiles [(int)GameTile.Direction.Down]);
+					movesRemaining--;
+				} else if (currentNode.me.tiles [(int)GameTile.Direction.Left] != null && currentNode.me.tiles [(int)GameTile.Direction.Left].type == GameTile.TileType.Transmitter) {
+					GameManager.instance.ActivateTransmitter (currentNode.me.tiles [(int)GameTile.Direction.Left]);
+					movesRemaining--;
+				}
 			}
-			if (currentNode.me.tiles [(int)GameTile.Direction.Right] != null && currentNode.me.tiles [(int)GameTile.Direction.Right].type == GameTile.TileType.Transmitter) {
-				foundNodes.Add (new Node (currentNode.me.tiles [(int)GameTile.Direction.Right], currentNode));
-			}
-			if (currentNode.me.tiles [(int)GameTile.Direction.Down] != null && currentNode.me.tiles [(int)GameTile.Direction.Down].type == GameTile.TileType.Transmitter) {
-				foundNodes.Add (new Node (currentNode.me.tiles [(int)GameTile.Direction.Down], currentNode));
-			}
-			if (currentNode.me.tiles [(int)GameTile.Direction.Left] != null && currentNode.me.tiles [(int)GameTile.Direction.Left].type != GameTile.TileType.Transmitter) {
-				foundNodes.Add (new Node (currentNode.me.tiles [(int)GameTile.Direction.Left], currentNode));
-			}*/
 
 			//Check all tiles that are neighbouring the one the player is currently on. 
 			//Add them to the list of nodes to scan. (The start node is included by default).
@@ -128,5 +122,11 @@ public class Player : GameUnit {
 			finalPath.RemoveAt (0);//THE KEY (we remove the transmitter tile from the pathing because it's supposed to be impassable, thus we move to the closest available space.
 			pathing = finalPath;
 		}
+	}
+
+	protected override void Kill(){
+		if (isAlive()) transform.Rotate (90,0,0);
+		base.Kill ();
+		GameManager.instance.CheckIfAllDead ();
 	}
 }

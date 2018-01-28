@@ -5,6 +5,7 @@ using UnityEngine;
 public class ControlHandler : MonoBehaviour {
 
 	public static GameObject highlightedElement;
+	public bool controlLock = false;
 
 	// Use this for initialization
 	void Start () {
@@ -12,20 +13,34 @@ public class ControlHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		MouseDetection ();	
-		if (Input.GetMouseButtonDown (0) && highlightedElement != null) {
-			if (highlightedElement.GetComponent<GameTile>() != null) {
-				if (highlightedElement.GetComponent<GameTile> ().type == GameTile.TileType.Transmitter) {
-					GameManager.instance.WhoseTurnIsIt ().SendMessage("tryActivateTransmitter", highlightedElement.transform.position);
-				} else if (GameManager.instance.WhoseTurnIsIt ().GetComponent(typeof (Player)) != null) {
-					GameManager.instance.WhoseTurnIsIt ().SendMessage("TryMovement", highlightedElement);
+		if (!controlLock) {
+			MouseDetection ();	
+			if (Input.GetMouseButtonDown (0) && highlightedElement != null) {
+				if (highlightedElement.GetComponent<GameTile> () != null) {
+					if (highlightedElement.GetComponent<GameTile> ().type == GameTile.TileType.Transmitter) {
+						GameManager.instance.WhoseTurnIsIt ().SendMessage ("TryActivateTransmitter", highlightedElement.transform.position, SendMessageOptions.DontRequireReceiver);
+					} else if (GameManager.instance.WhoseTurnIsIt ().GetComponent (typeof(Player)) != null) {
+						GameManager.instance.WhoseTurnIsIt ().SendMessage ("TryMovement", highlightedElement, SendMessageOptions.DontRequireReceiver);
+					}
 				}
 			}
-		}
 
-		if (Input.GetButtonDown (buttonName: "Next Turn")) {
-			Debug.Log ("t trigger");
-			StartCoroutine(GameManager.instance.NextTurn());
+			if (Input.GetButtonDown (buttonName: "Next Turn")) {
+				StartCoroutine (GameManager.instance.NextTurn ());
+			}
+
+			if (Input.GetKeyDown (KeyCode.W)) {
+				Debug.Log (GameManager.instance.WhoseTurnIsIt ().name);
+				GameManager.instance.WhoseTurnIsIt ().SendMessage ("TryAttackMove", Vector3.forward, SendMessageOptions.DontRequireReceiver);
+			} else if (Input.GetKeyDown (KeyCode.A)) {
+				GameManager.instance.WhoseTurnIsIt ().SendMessage ("TryAttackMove", Vector3.left, SendMessageOptions.DontRequireReceiver);
+			} else if (Input.GetKeyDown (KeyCode.S)) {
+				GameManager.instance.WhoseTurnIsIt ().SendMessage ("TryAttackMove", Vector3.back, SendMessageOptions.DontRequireReceiver);
+			} else if (Input.GetKeyDown (KeyCode.D)) {
+				GameManager.instance.WhoseTurnIsIt ().SendMessage ("TryAttackMove", Vector3.right, SendMessageOptions.DontRequireReceiver);
+			} else if (Input.GetKeyDown (KeyCode.E)) {
+				GameManager.instance.WhoseTurnIsIt ().SendMessage ("SpawnMinion", SendMessageOptions.DontRequireReceiver);
+			}
 		}
 	}
 

@@ -124,10 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 114f229d8f39b274f8e453ba6c064e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveMarkerPrefab: {fileID: 1808207224108862, guid: 23b101a5b0bdd6043810cc1ee0f94a2b,
-    type: 2}
   maxMoves: 2
   tileTransitionSpeed: 2
+  arrowPrefab: {fileID: 1017756299125174, guid: cbc13e2b60a7dd249bd430d83b512c30,
+    type: 2}
+  maxArrows: 1
+  arrowSpeed: 20
 --- !u!136 &136062678310699412
 CapsuleCollider:
   m_ObjectHideFlags: 1

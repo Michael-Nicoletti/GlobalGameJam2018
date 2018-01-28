@@ -24,11 +24,9 @@ public class GameManager : MonoBehaviour {
 	private bool spawnPlayers = true;
 
 	List<GameObject> minionsInGame = new List<GameObject>();
-	ControlHandler controlHandler;
 
 	void Awake() {
 		instance = this;
-		controlHandler = this.GetComponent<ControlHandler> ();
 	}
 
 	// Use this for initialization
@@ -79,23 +77,27 @@ public class GameManager : MonoBehaviour {
 	public IEnumerator NextTurn(){
 		Debug.Log ("Next turn!");
 		WhoseTurnIsIt ().GetComponent<GameUnit>().Sleep();
-		controlHandler.controlLock = true;
+		ControlHandler.instance.controlLock = true;
 
-		//If the boss just ended their turn, enter a special minion phase that lasts three seconds (divided amongst all minions).
-		if (playerTurn == 1) {
+		//If the boss just ended their turn, enter a special minion phase that lasts three seconds.
+		if (playerTurn == 1 && MinionCount() > 0) {
+			CameraMan.instance.ChangeCameraModes (CameraMan.CameraModes.Full);
+			WhoseTurnIsIt ().GetComponent<Boss> ().RefreshMinionCharges();
 			Debug.Log ("Special Minion Turn! Minion Count: " + minionsInGame.Count);
 			for (int i = 0; i < minionsInGame.Count; i++) {
 				Minion minion = minionsInGame [i].GetComponent<Minion>();
 				minion.WakeUp ();
 				minion.RefreshMoves ();
 				minion.HuntAndPester ();
-				yield return new WaitForSeconds (3 / minionsInGame.Count);
+				yield return new WaitForSeconds (0.5f);
 			}
+			yield return new WaitForSeconds (2);
 
 			for (int i = 0; i < minionsInGame.Count; i++) {
 				Minion minion = minionsInGame [i].GetComponent<Minion>();
 				minion.Sleep ();
 			}
+			CameraMan.instance.ChangeCameraModes (CameraMan.CameraModes.Follow);
 		}
 
 		playerTurn++;
@@ -111,13 +113,14 @@ public class GameManager : MonoBehaviour {
 			playerTurn = 1;
 
 		GameUnit playerInControl = WhoseTurnIsIt ().GetComponent<GameUnit>();
+		if (playerInControl.GetComponent<Player> () != null) playerInControl.GetComponent<Player>().refreshArrows() ;
 		playerInControl.RefreshMoves();
 		CameraMan.instance.SetTarget (WhoseTurnIsIt().transform);
 		playerInControl.WakeUp ();
 		GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (playerInControl.transform.position);
 		yield return new WaitForSeconds(0.5f);
 
-		controlHandler.controlLock = false;
+		ControlHandler.instance.controlLock = false;
 	}
 
 	public void ActivateTransmitter(GameTile t){
@@ -172,10 +175,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void RemoveMinionFromList(GameObject m){
-		for (int i = 0; i < MinionCount () - 1; i++) {
-			if (minionsInGame [i] == m) {
-				minionsInGame.RemoveAt (i);
-			}
-		}
+		minionsInGame.Remove(m);
 	}
 }

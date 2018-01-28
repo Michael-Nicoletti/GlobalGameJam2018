@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class ControlHandler : MonoBehaviour {
 
+	public static ControlHandler instance;
 	public static GameObject highlightedElement;
 	public bool controlLock = false;
+
+	void Awake (){
+		instance = this;
+	}
 
 	// Use this for initialization
 	void Start () {

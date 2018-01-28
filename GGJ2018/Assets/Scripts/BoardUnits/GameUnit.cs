@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameUnit : MonoBehaviour {
 
-	[SerializeField]int maxMoves = 2;
-	[SerializeField]int tileTransitionSpeed = 3;
+	[SerializeField] protected int maxMoves = 2;
+	[SerializeField] protected int tileTransitionSpeed = 3;
 
 	protected int health = 2;
 	protected int movesRemaining = 0;

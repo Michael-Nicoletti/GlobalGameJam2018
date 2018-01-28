@@ -6,14 +6,20 @@ public class CameraMan : MonoBehaviour {
 
 	public static CameraMan instance;
 	[SerializeField] private Vector3 cameraOffset = new Vector3 (-4, 10, -7);
-	[SerializeField] private float CameraSpeed = 1;
+	[SerializeField] private float CameraSpeed = 3;
+	[SerializeField] private float zoomOutDist = 50f;
 	private Transform target;
+	private float originalOrthoSize;
+	private Camera thisCamera;
 
-	public enum CameraModes{Free, Follow}
-	CameraModes cameraMode = CameraModes.Follow;
+
+	public enum CameraModes{Free, Follow, Full}
+	public CameraModes cameraMode = CameraModes.Follow;
 
 	void Awake () {
 		instance = this;
+		thisCamera = this.GetComponent<Camera> ();
+		originalOrthoSize = thisCamera.orthographicSize;
 	}
 
 	// Use this for initialization
@@ -25,9 +31,15 @@ public class CameraMan : MonoBehaviour {
 	void Update () {
 		switch (cameraMode) {
 		case CameraModes.Free:
+			thisCamera.orthographicSize = originalOrthoSize;
 			break;
 		case CameraModes.Follow:
-			if (target) SlideSmoothestlyToTarget (target.transform.position);
+			thisCamera.orthographicSize = originalOrthoSize;
+			if (target) SlideSmoothestlyToTargetGrounded (target.transform.position);
+			break;
+		case CameraModes.Full:
+			thisCamera.orthographicSize = Mathf.Lerp (thisCamera.orthographicSize, zoomOutDist, Time.deltaTime);
+			SlideSmoothestlyToTargetAerial (new Vector3 (5, 0, -5));
 			break;
 		}
 	}
@@ -36,10 +48,17 @@ public class CameraMan : MonoBehaviour {
 		
 	}
 
-	public void SlideSmoothestlyToTarget(Vector3 target)
+	public void SlideSmoothestlyToTargetGrounded(Vector3 target)
 	{
 		//Lerp smoothly from the camera position to the target position. Include offset.
 		transform.position = Vector3.Lerp(transform.position, new Vector3(target.x, 0, target.z) + cameraOffset, CameraSpeed * Time.fixedDeltaTime);
+		return;
+	}
+
+	public void SlideSmoothestlyToTargetAerial(Vector3 target)
+	{
+		//Lerp smoothly from the camera position to the target position. Include offset.
+		transform.position = Vector3.Lerp(transform.position, new Vector3(target.x, target.y, target.z) + cameraOffset, CameraSpeed * Time.fixedDeltaTime);
 		return;
 	}
 

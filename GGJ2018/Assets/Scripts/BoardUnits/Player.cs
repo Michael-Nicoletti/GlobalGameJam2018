@@ -6,6 +6,16 @@ using UnityEngine;
 
 public class Player : GameUnit {
 
+	[SerializeField]GameObject arrowPrefab;
+	[SerializeField]int maxArrows = 1;
+	[SerializeField]int arrowSpeed = 10;
+	int arrowSupply;
+
+	protected override void Start () {
+		base.Start ();
+		refreshArrows ();
+	}
+
 	protected override void FixedUpdate(){
 		base.FixedUpdate ();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 	}
@@ -124,9 +134,46 @@ public class Player : GameUnit {
 		}
 	}
 
+	protected override void TravelAlongTiles(){
+		if (movesRemaining == 0) {
+			pathing.Clear();
+		}
+
+		if (pathing.Count >= 1){
+			transform.position = Vector3.Lerp (transform.position, pathing[pathing.Count-1].transform.position + (pathing[pathing.Count-1].transform.position - transform.position).normalized*1.3f, Time.deltaTime * tileTransitionSpeed);
+			Debug.DrawRay (transform.position, Vector3.up * 5, Color.yellow, 1.0f);
+			GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (transform.position);
+			travelling = true;
+			ControlHandler.instance.controlLock = true;
+			if (GameManager.instance.WhoseTurnIsIt () == gameObject) {
+				GameTileManager.instance.UpdateActiveListBasedOnPlayerPosition (transform.position);
+			}
+			if (Vector3.Distance (transform.position, pathing[pathing.Count-1].transform.position) < tileSnapDistance) {
+				transform.position = pathing[pathing.Count-1].transform.position;
+				pathing.RemoveAt (pathing.Count-1);
+				movesRemaining--;
+				travelling = false;
+				ControlHandler.instance.controlLock = false;
+			}
+
+			if (pathing.Count >= 1) Debug.DrawRay (pathing[pathing.Count-1].transform.position, Vector3.up * 8f, Color.white);
+		}
+	}
+
 	protected override void Kill(){
 		if (isAlive()) transform.Rotate (90,0,0);
 		base.Kill ();
 		GameManager.instance.CheckIfAllDead ();
+	}
+
+	protected void TryAttackMove(Vector3 dir){
+		if (arrowSupply > 0) {
+			Instantiate (arrowPrefab, transform.position + Vector3.up, Quaternion.LookRotation(dir)).GetComponent<Arrow>().Prime(arrowSpeed, dir);
+			arrowSupply--;
+		}
+	}
+
+	public void refreshArrows(){
+		arrowSupply = maxArrows;
 	}
 }
